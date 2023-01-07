@@ -1,14 +1,15 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BarWrapper = styled.div`
-    background-color: ${props => props.color ? props.color : "red"};
-    border: 1px solid black;
-` 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.color};
+  border: 1px solid black;
+`;
 
-const SingleColorBar = (props) => {
-  return (
-    <BarWrapper>{props.color}</BarWrapper>
-  )
-}
+const SingleColorBar = props => {
+  return <BarWrapper>{props.color}</BarWrapper>;
+};
 
-export default SingleColorBar
+export default SingleColorBar;

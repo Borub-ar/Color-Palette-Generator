@@ -1,5 +1,4 @@
-
-import styled from "styled-components";
+import styled from 'styled-components';
 import ControlPanel from './components/ControlPanel';
 import ColorPalette from './components/ColorPalette';
 import GlobalStyle from './GlobalStyle';
@@ -20,7 +19,7 @@ function App() {
         <ControlPanel />
       </Wrapper>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
