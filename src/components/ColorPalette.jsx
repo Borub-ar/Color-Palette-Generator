@@ -1,7 +1,23 @@
+import styled from "styled-components";
+import SingleColorBar from './SingleColorBar';
+
+const PaletteWrapper = styled.section`
+  display: flex;
+  
+  & > * {
+    flex: 1;
+  }
+`
+
 const ColorPalette = () => {
   return (
-    <div>ColorPalette</div>
+    <PaletteWrapper>
+      <SingleColorBar color="blue"/>
+      <SingleColorBar color="red'"/>
+      <SingleColorBar color="yellow"/>
+      <SingleColorBar color="black"/>
+    </PaletteWrapper>
   )
 }
 
-export default ColorPalette
+export default ColorPalette;
