@@ -1,18 +1,26 @@
-import './App.css'
-import styled from "styled-components";
-import MainPanel from './components/MainPanel';
 
-const Wrapper = styled.div`
-  height: 100%;
-  background-color: blue;
-`
+import styled from "styled-components";
+import ControlPanel from './components/ControlPanel';
+import ColorPalette from './components/ColorPalette';
+import GlobalStyle from './GlobalStyle';
+
+const Wrapper = styled.main`
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
+  background-color: #e7e6e6;
+`;
 
 function App() {
-  return 
-  <Wrapper>
-    <ColorPalette />
-    <MainPanel />
-  </Wrapper>
+  return (
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <ColorPalette />
+        <ControlPanel />
+      </Wrapper>
+    </>
+  )
 }
 
 export default App
