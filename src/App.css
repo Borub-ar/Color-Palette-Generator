@@ -1,3 +1,10 @@
 body {
+  height: 100vh;
   background-color: firebrick;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
