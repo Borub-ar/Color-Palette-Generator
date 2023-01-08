@@ -2,11 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     :root {
-        --panelColor: #e9e9e9;
+        --mainBackground: #f7f7f7;
+        --panelBtn: #202020;
     }
 
     body {
         height: 100vh;
+        background-color: var(--mainBackground);
         font-family: 'Roboto Condensed', sans-serif;
     }
 

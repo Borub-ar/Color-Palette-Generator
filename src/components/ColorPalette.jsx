@@ -12,12 +12,11 @@ const PaletteWrapper = styled.section`
 const ColorPalette = () => {
   return (
     <PaletteWrapper>
-      <SingleColorBar color='blue' />
-      <SingleColorBar color='red' />
-      <SingleColorBar color='yellow' />
-      <SingleColorBar color='black' />
-      <SingleColorBar color='black' />
-      <SingleColorBar color='black' />
+      <SingleColorBar color='#B0F2B4' />
+      <SingleColorBar color='#BAF2E9' />
+      <SingleColorBar color='#BAD7F2' />
+      <SingleColorBar color='#F2BAC9' />
+      <SingleColorBar color='#F2E2BA' />
     </PaletteWrapper>
   );
 };
