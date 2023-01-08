@@ -7,7 +7,7 @@ const Wrapper = styled.main`
   display: grid;
   grid-template-rows: 1fr auto;
   height: 100vh;
-  background-color: #e7e6e6;
+  background-color: var(--mainBackground);
 `;
 
 function App() {

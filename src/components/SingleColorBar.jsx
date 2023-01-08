@@ -4,12 +4,12 @@ const BarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.color ? props.color : 'red'};
+  background-color: ${props => props.color};
   border: 1px solid black;
 `;
 
 const SingleColorBar = props => {
-  return <BarWrapper>{props.color}</BarWrapper>;
+  return <BarWrapper color={props.color}>{props.color}</BarWrapper>;
 };
 
 export default SingleColorBar;

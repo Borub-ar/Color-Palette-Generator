@@ -1,35 +1,30 @@
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBook,
   faArrowRotateRight,
   faFloppyDisk,
 } from '@fortawesome/free-solid-svg-icons';
+import ControlPanelButton from './buttons/ControlPanelButton';
 
 const PanelWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--panelColor);
+  gap: 20px;
+  background-color: var(--mainBackground);
   padding: 2rem 7rem;
   height: 25vh;
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
 `;
 
 const MainPanel = () => {
   return (
     <PanelWrapper>
-      <button className='action-btn'>
-        <FontAwesomeIcon icon={faBook} />
-        <p>Library</p>
-      </button>
-      <button className='action-btn'>
-        <FontAwesomeIcon icon={faArrowRotateRight} />
-        <p>Generate</p>
-      </button>
-      <button className='action-btn'>
-        <FontAwesomeIcon icon={faFloppyDisk} />
-        <p>Save</p>
-      </button>
+      <ControlPanelButton label='Library' icon={faBook} />
+      <ControlPanelButton label='Generate' icon={faArrowRotateRight} />
+      <ControlPanelButton label='Save' icon={faFloppyDisk} />
     </PanelWrapper>
   );
 };
