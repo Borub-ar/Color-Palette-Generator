@@ -1,10 +1,16 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBook,
+  faArrowRotateRight,
+  faFloppyDisk,
+} from '@fortawesome/free-solid-svg-icons';
 
 const PanelWrapper = styled.section`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: firebrick;
+  justify-content: space-between;
+  background-color: var(--panelColor);
   padding: 2rem 7rem;
   height: 25vh;
 `;
@@ -12,15 +18,18 @@ const PanelWrapper = styled.section`
 const MainPanel = () => {
   return (
     <PanelWrapper>
-      <div>
+      <button className='action-btn'>
+        <FontAwesomeIcon icon={faBook} />
         <p>Library</p>
-      </div>
-      <div>
+      </button>
+      <button className='action-btn'>
+        <FontAwesomeIcon icon={faArrowRotateRight} />
         <p>Generate</p>
-      </div>
-      <div>
+      </button>
+      <button className='action-btn'>
+        <FontAwesomeIcon icon={faFloppyDisk} />
         <p>Save</p>
-      </div>
+      </button>
     </PanelWrapper>
   );
 };

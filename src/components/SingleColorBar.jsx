@@ -4,7 +4,7 @@ const BarWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.color};
+  background-color: ${props => props.color ? props.color : 'red'};
   border: 1px solid black;
 `;
 
