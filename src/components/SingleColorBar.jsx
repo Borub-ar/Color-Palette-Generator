@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const BarWrapper = styled.div`
@@ -9,7 +10,9 @@ const BarWrapper = styled.div`
 `;
 
 const SingleColorBar = props => {
-  return <BarWrapper color={props.color}>{props.color}</BarWrapper>;
+  const [color, setColor] = useState(props.generateRandomHexColor());
+
+  return <BarWrapper color={color}></BarWrapper>;
 };
 
 export default SingleColorBar;

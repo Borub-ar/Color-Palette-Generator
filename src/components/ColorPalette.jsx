@@ -10,13 +10,22 @@ const PaletteWrapper = styled.section`
 `;
 
 const ColorPalette = () => {
+  const generateRandomHexColor = () => {
+    let hex = '#';
+    let letters = '0123456789ABCDEF';
+    for (let i = 0; i < 6; i++) {
+      hex += letters[Math.floor(Math.random() * 16)];
+    }
+    return hex;
+  };
+
   return (
     <PaletteWrapper>
-      <SingleColorBar color='#B0F2B4' />
-      <SingleColorBar color='#BAF2E9' />
-      <SingleColorBar color='#BAD7F2' />
-      <SingleColorBar color='#F2BAC9' />
-      <SingleColorBar color='#F2E2BA' />
+      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
+      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
+      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
+      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
+      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
     </PaletteWrapper>
   );
 };
