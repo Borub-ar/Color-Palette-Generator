@@ -31,9 +31,15 @@ const ButtonWrapper = styled.div`
 `;
 
 const ControlPanelButton = props => {
+  const handleClick = () => {
+    if (props.generateMode) {
+      console.log('generate')
+    }
+  };
+
   return (
     <ButtonWrapper>
-      <button className='action' aria-label={props.label}>
+      <button className='action' aria-label={props.label} onClick={handleClick}>
         <FontAwesomeIcon icon={props.icon} />
       </button>
       <p className='label'>{props.label}</p>

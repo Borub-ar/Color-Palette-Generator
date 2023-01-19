@@ -23,7 +23,11 @@ const MainPanel = () => {
   return (
     <PanelWrapper>
       <ControlPanelButton label='Library' icon={faBook} />
-      <ControlPanelButton label='Generate' icon={faArrowRotateRight} />
+      <ControlPanelButton
+        generateMode
+        label='Generate'
+        icon={faArrowRotateRight}
+      />
       <ControlPanelButton label='Save' icon={faFloppyDisk} />
     </PanelWrapper>
   );
