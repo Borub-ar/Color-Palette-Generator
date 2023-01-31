@@ -29,7 +29,7 @@ const BarWrapper = styled.div`
 `;
 
 const SingleColorBar = props => {
-  const [color, setColor] = useState(props.generateRandomHexColor());
+  const [color, setColor] = useState(props.color);
 
   return (
     <BarWrapper color={color}>
