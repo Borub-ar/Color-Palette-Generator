@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useContext } from 'react';
+import PaletteContext from '../../store/palette-context';
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -31,9 +33,14 @@ const ButtonWrapper = styled.div`
 `;
 
 const ControlPanelButton = props => {
+  const ctx = useContext(PaletteContext);
+
+  const generateRandomHexColors = colorsNumber => {};
+
   const handleClick = () => {
     if (props.generateMode) {
-      console.log('generate');
+      const generatedColors = generateRandomHexColors(ctx.numberOfBars);
+      ctx.setColors(generatedColors);
     }
   };
 
