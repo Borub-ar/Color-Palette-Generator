@@ -35,12 +35,9 @@ const ButtonWrapper = styled.div`
 const ControlPanelButton = props => {
   const ctx = useContext(PaletteContext);
 
-  const generateRandomHexColors = colorsNumber => {};
-
   const handleClick = () => {
     if (props.generateMode) {
-      const generatedColors = generateRandomHexColors(ctx.numberOfBars);
-      ctx.setColors(generatedColors);
+      ctx.generateRandomHexColors();
     }
   };
 

@@ -1,4 +1,6 @@
+import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
+import PaletteContext from '../store/palette-context';
 import SingleColorBar from './SingleColorBar';
 
 const PaletteWrapper = styled.section`
@@ -10,24 +12,17 @@ const PaletteWrapper = styled.section`
 `;
 
 const ColorPalette = () => {
-  const generateRandomHexColor = () => {
-    let hex = '#';
-    let letters = '0123456789ABCDEF';
-    for (let i = 0; i < 6; i++) {
-      hex += letters[Math.floor(Math.random() * 16)];
-    }
-    return hex;
-  };
+  const ctx = useContext(PaletteContext);
 
-  return (
-    <PaletteWrapper>
-      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
-      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
-      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
-      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
-      <SingleColorBar generateRandomHexColor={generateRandomHexColor} />
-    </PaletteWrapper>
-  );
+  useEffect(() => {
+    ctx.generateRandomHexColors();
+  }, []);
+
+  const colorBars = ctx.colors.map(hexColor => (
+    <SingleColorBar key={hexColor} color={hexColor} />
+  ));
+
+  return <PaletteWrapper>{colorBars}</PaletteWrapper>;
 };
 
 export default ColorPalette;
