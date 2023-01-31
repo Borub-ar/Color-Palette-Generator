@@ -33,7 +33,7 @@ const ButtonWrapper = styled.div`
 const ControlPanelButton = props => {
   const handleClick = () => {
     if (props.generateMode) {
-      console.log('generate')
+      console.log('generate');
     }
   };
 
