@@ -11,10 +11,6 @@ const Wrapper = styled.main`
 `;
 
 function App() {
-  const handleGenerateRandomColor() => {
-
-  }
-
   return (
     <>
       <GlobalStyle />
