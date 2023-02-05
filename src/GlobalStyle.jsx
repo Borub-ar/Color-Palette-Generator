@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
     :root {
         --mainBackground: #f7f7f7;
-        --panelBtn: #202020;
+        --defaultDark: #202020;
     }
 
     body {

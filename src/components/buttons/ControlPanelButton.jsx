@@ -12,7 +12,7 @@ const ButtonWrapper = styled.div`
   & .action {
     border: none;
     font-size: 1.4rem;
-    background-color: var(--panelBtn);
+    background-color: var(--defaultDark);
     color: var(--mainBackground);
     padding: 10px 30px;
     border-radius: 5px;
@@ -28,7 +28,7 @@ const ButtonWrapper = styled.div`
     text-align: center;
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--panelBtn);
+    color: var(--defaultDark);
   }
 `;
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import PaletteContext from '../store/palette-context';
+import PaletteContext from '../../store/palette-context';
 import SingleColorBar from './SingleColorBar';
 
 const PaletteWrapper = styled.section`
@@ -8,10 +8,6 @@ const PaletteWrapper = styled.section`
 
   & > * {
     flex: 1;
-  }
-
-  @media (width < 550px) {
-    flex-direction: column;
   }
 `;
 
