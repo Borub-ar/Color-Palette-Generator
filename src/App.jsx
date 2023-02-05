@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import ControlPanel from './components/ControlPanel';
-import ColorPalette from './components/ColorPalette';
+import ControlPanel from './components/controlPanel/ControlPanel';
+import ColorPalette from './components/colorPalette/ColorPalette';
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
 
@@ -13,7 +13,7 @@ const Wrapper = styled.main`
 `;
 
 function App() {
-  const [colors, setColors] = useState([])
+  const [colors, setColors] = useState([]);
   const [numberOfBars, setNumberOfBars] = useState(5);
 
   const generateRandomHexColors = () => {
@@ -29,12 +29,17 @@ function App() {
     setColors(generatedColors);
   };
 
+  const updateColorBarsQuantity = number => {
+    setNumberOfBars(number);
+  };
+
   return (
     <PaletteContext.Provider
       value={{
         colors,
         setColors,
         numberOfBars,
+        updateColorBarsQuantity,
         generateRandomHexColors,
       }}>
       <GlobalStyle />
