@@ -9,6 +9,10 @@ const PaletteWrapper = styled.section`
   & > * {
     flex: 1;
   }
+
+  @media (width < 550px) {
+    flex-direction: column;
+  }
 `;
 
 const ColorPalette = () => {
