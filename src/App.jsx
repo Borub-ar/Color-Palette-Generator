@@ -13,6 +13,8 @@ const Wrapper = styled.main`
 `;
 
 function App() {
+  const [currentPaletteId, setCurrentPaletteId] = useState('');
+  const [savedPalettes, setSavedPalettes] = useState([]);
   const [colors, setColors] = useState([]);
   const [numberOfBars, setNumberOfBars] = useState(5);
 
@@ -27,10 +29,33 @@ function App() {
       generatedColors.push(hex);
     }
     setColors(generatedColors);
+    generateId();
+  };
+
+  const generateId = () => {
+    const randomId = crypto.randomUUID();
+    setCurrentPaletteId(randomId);
   };
 
   const updateColorBarsQuantity = number => {
     setNumberOfBars(number);
+  };
+
+  const saveColorPalette = () => {
+    if (savedPalettes.some(palette => palette.id === currentPaletteId)) {
+      return false;
+    }
+
+    setSavedPalettes(prevState => [
+      ...prevState,
+      {
+        id: currentPaletteId,
+        colors: colors,
+      },
+    ]);
+
+    console.log(savedPalettes);
+    return true;
   };
 
   return (
@@ -41,6 +66,7 @@ function App() {
         numberOfBars,
         updateColorBarsQuantity,
         generateRandomHexColors,
+        saveColorPalette,
       }}>
       <GlobalStyle />
       <Wrapper>

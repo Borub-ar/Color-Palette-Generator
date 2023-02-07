@@ -38,7 +38,7 @@ const MainPanel = () => {
           label='Generate'
           icon={faArrowRotateRight}
         />
-        <ControlPanelButton label='Save' icon={faFloppyDisk} />
+        <ControlPanelButton saveMode label='Save' icon={faFloppyDisk} />
       </div>
     </PanelWrapper>
   );
