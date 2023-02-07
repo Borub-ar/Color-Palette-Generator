@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext } from 'react';
 import PaletteContext from '../../store/palette-context';
-import { useState } from 'react';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -72,6 +70,10 @@ const ControlPanelButton = props => {
         setShowSavePopup(false);
       }, 2000);
     }
+
+    if (props.libraryMode) {
+      ctx.handleLibraryVisibility();
+    }
   };
 
   return (
@@ -79,6 +81,7 @@ const ControlPanelButton = props => {
       <button className='action' aria-label={props.label} onClick={handleClick}>
         <FontAwesomeIcon icon={props.icon} />
       </button>
+
       <p className='label'>{props.label}</p>
 
       {props.saveMode && showSavePopup && (

@@ -4,7 +4,7 @@ import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
 import ColorPalette from './components/colorPalette/ColorPalette';
 import ControlPanel from './components/controlPanel/ControlPanel';
-import SavedPalettesModal from './components/savedPalettesModal/savedPalettesModal';
+import PalettesLibrary from './components/palettesLibrary/PalettesLibrary';
 
 const Wrapper = styled.main`
   position: relative;
@@ -16,9 +16,10 @@ const Wrapper = styled.main`
 
 function App() {
   const [currentPaletteId, setCurrentPaletteId] = useState('');
-  const [savedPalettes, setSavedPalettes] = useState([]);
+  const [savedColorPalettes, setSavedColorPalettes] = useState([]);
   const [colors, setColors] = useState([]);
   const [numberOfBars, setNumberOfBars] = useState(5);
+  const [showLibrary, setShowLibrary] = useState(false);
 
   const generateRandomHexColors = () => {
     const generatedColors = [];
@@ -31,10 +32,10 @@ function App() {
       generatedColors.push(hex);
     }
     setColors(generatedColors);
-    generateId();
+    generatePaletteId();
   };
 
-  const generateId = () => {
+  const generatePaletteId = () => {
     const randomId = crypto.randomUUID();
     setCurrentPaletteId(randomId);
   };
@@ -44,11 +45,11 @@ function App() {
   };
 
   const saveColorPalette = () => {
-    if (savedPalettes.some(palette => palette.id === currentPaletteId)) {
+    if (savedColorPalettes.some(palette => palette.id === currentPaletteId)) {
       return false;
     }
 
-    setSavedPalettes(prevState => [
+    setSavedColorPalettes(prevState => [
       ...prevState,
       {
         id: currentPaletteId,
@@ -56,25 +57,31 @@ function App() {
       },
     ]);
 
-    console.log(savedPalettes);
     return true;
   };
 
+  const handleLibraryVisibility = () => {
+    setShowLibrary(prevState => !prevState);
+  };
+
+  const providerValues = {
+    colors,
+    setColors,
+    numberOfBars,
+    updateColorBarsQuantity,
+    generateRandomHexColors,
+    saveColorPalette,
+    savedColorPalettes,
+    handleLibraryVisibility,
+  };
+
   return (
-    <PaletteContext.Provider
-      value={{
-        colors,
-        setColors,
-        numberOfBars,
-        updateColorBarsQuantity,
-        generateRandomHexColors,
-        saveColorPalette,
-      }}>
+    <PaletteContext.Provider value={providerValues}>
       <GlobalStyle />
       <Wrapper>
         <ColorPalette />
         <ControlPanel />
-        <SavedPalettesModal />
+        {showLibrary && <PalettesLibrary />}
       </Wrapper>
     </PaletteContext.Provider>
   );
