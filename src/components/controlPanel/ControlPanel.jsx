@@ -32,7 +32,7 @@ const MainPanel = () => {
     <PanelWrapper>
       <BarQuantityController />
       <div className='buttons-wrapper'>
-        <ControlPanelButton label='Library' icon={faBook} />
+        <ControlPanelButton libraryMode label='Library' icon={faBook} />
         <ControlPanelButton
           generateMode
           label='Generate'
