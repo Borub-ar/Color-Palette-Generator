@@ -1,30 +1,40 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import PaletteContext from '../../store/palette-context';
-import SavedPaletteTile from './SavedPaletteTile';
+import LibraryTile from './LibraryTile';
+import ModalOverlay from '../StyledComponents/ModalOverlay';
 
-const ModalOverlay = styled.section`
-  position: fixed;
-  inset: 0;
-  z-index: 5;
+const Modal = styled.div`
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0000007b;
-
-  .modal {
-    background-color: #fff;
-    padding: 2rem 2rem;
-    border-radius: 15px;
-    width: 50vh;
-  }
+  flex-direction: column;
+  background-color: #fff;
+  padding: 2rem 2rem;
+  border-radius: 15px;
+  width: 50vh;
 
   .list-wrapper {
     display: flex;
     flex-direction: column;
+    row-gap: 0.5rem;
     height: 20rem;
-    border: 3px solid #0000007b;
+    padding: 0.5rem;
+    border: 3px solid var(--main-blue);
+    border-radius: 5px;
+    overflow-y: scroll;
+  }
+
+  .close-icon {
+    position: absolute;
+    top: -5rem;
+    right: -5rem;
+    font-size: 4rem;
+    cursor: pointer;
+    color: #fff;
+    background-color: transparent;
+    border: none;
   }
 `;
 
@@ -35,15 +45,18 @@ const PalettesLibrary = () => {
     ctx.handleLibraryVisibility();
   };
 
-  const savedPalettes = ctx.savedColorPalettes.map(el => (
-    <SavedPaletteTile key={el.id} />
+  const savedPalettes = ctx.savedColorPalettes.map(palette => (
+    <LibraryTile key={palette.id} paletteData={palette} />
   ));
 
   return (
-    <ModalOverlay onClick={closeModal}>
-      <div className='modal'>
+    <ModalOverlay>
+      <Modal>
+        <button className='close-icon' aria-label='Close modal'>
+          <FontAwesomeIcon icon={faCircleXmark} onClick={closeModal} />
+        </button>
         <div className='list-wrapper'>{savedPalettes}</div>
-      </div>
+      </Modal>
     </ModalOverlay>
   );
 };

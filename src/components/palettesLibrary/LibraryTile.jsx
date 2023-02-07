@@ -5,8 +5,8 @@ const Tile = styled.div`
   box-shadow: 0px -0px 24px -7px rgba(66, 68, 90, 1);
 `;
 
-const SavedPaletteTile = props => {
+const LibraryTile = props => {
   return <Tile></Tile>;
 };
 
-export default SavedPaletteTile;
+export default LibraryTile;

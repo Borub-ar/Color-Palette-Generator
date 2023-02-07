@@ -4,6 +4,7 @@ export default createGlobalStyle`
     :root {
         --mainBackground: #f7f7f7;
         --defaultDark: #202020;
+        --main-blue: #288ee2;
     }
 
     body {
