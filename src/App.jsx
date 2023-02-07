@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import ControlPanel from './components/controlPanel/ControlPanel';
-import ColorPalette from './components/colorPalette/ColorPalette';
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
+import ColorPalette from './components/colorPalette/ColorPalette';
+import ControlPanel from './components/controlPanel/ControlPanel';
+import SavedPalettesModal from './components/savedPalettesModal/savedPalettesModal';
 
 const Wrapper = styled.main`
+  position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
   height: 100vh;
@@ -72,6 +74,7 @@ function App() {
       <Wrapper>
         <ColorPalette />
         <ControlPanel />
+        <SavedPalettesModal />
       </Wrapper>
     </PaletteContext.Provider>
   );
