@@ -44,7 +44,7 @@ const InputWrapper = styled.div`
     height: 15px;
     width: 61px;
     border-radius: 50px;
-    background: #288ee2;
+    background: var(--main-blue);
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -4px;
@@ -66,7 +66,7 @@ const InputWrapper = styled.div`
     height: 15px;
     width: 41px;
     border-radius: 50px;
-    background: #288ee2;
+    background: var(--main-blue);
     cursor: pointer;
   }
 
@@ -94,7 +94,7 @@ const InputWrapper = styled.div`
     height: 15px;
     width: 41px;
     border-radius: 50px;
-    background: #288ee2;
+    background: var(--main-blue);
     cursor: pointer;
   }
 
