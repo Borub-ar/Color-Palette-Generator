@@ -8,7 +8,7 @@ const InputWrapper = styled.div`
   align-items: center;
 
   & :is(label, p) {
-    color: var(--defaultDark);
+    color: var(--default-dark);
     font-weight: 700;
   }
 

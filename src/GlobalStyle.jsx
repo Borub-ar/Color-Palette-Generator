@@ -2,14 +2,14 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
     :root {
-        --mainBackground: #f7f7f7;
-        --defaultDark: #202020;
+        --main-background: #f7f7f7;
         --main-blue: #288ee2;
+        --default-dark: #202020;
     }
 
     body {
         height: 100vh;
-        background-color: var(--mainBackground);
+        background-color: var(--main-background);
         font-family: 'Roboto Condensed', sans-serif;
     }
 
