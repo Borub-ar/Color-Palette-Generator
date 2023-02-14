@@ -44,11 +44,11 @@ function App() {
     setNumberOfBars(number);
   };
 
-  const saveColorPalette = () => {
-    if (savedColorPalettes.some(palette => palette.id === currentPaletteId)) {
-      return false;
-    }
+  const checkIfPaletteAlreadySaved = () => {
+    return savedColorPalettes.some(palette => palette.id === currentPaletteId);
+  };
 
+  const saveColorPalette = () => {
     setSavedColorPalettes(prevState => [
       ...prevState,
       {
@@ -70,6 +70,7 @@ function App() {
     numberOfBars,
     updateColorBarsQuantity,
     generateRandomHexColors,
+    checkIfPaletteAlreadySaved,
     saveColorPalette,
     savedColorPalettes,
     handleLibraryVisibility,

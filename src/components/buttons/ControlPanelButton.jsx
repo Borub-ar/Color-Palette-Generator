@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PaletteContext from '../../store/palette-context';
+import Modal from '../Modal/Modal';
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -49,8 +50,8 @@ const ButtonWrapper = styled.div`
 
 const ControlPanelButton = props => {
   const ctx = useContext(PaletteContext);
+  const [alreadySaved, setAlreadySaved] = useState(false);
   const [showSavePopup, setShowSavePopup] = useState(false);
-  const [popupMessage, setPopupMessage] = useState('');
 
   const handleClick = () => {
     if (props.generateMode) {
@@ -58,23 +59,30 @@ const ControlPanelButton = props => {
     }
 
     if (props.saveMode) {
-      const saveSuccessful = ctx.saveColorPalette();
-      const popupMessage = saveSuccessful
-        ? 'Palette saved'
-        : 'Palette already saved';
-      setPopupMessage(popupMessage);
+      setAlreadySaved(ctx.checkIfPaletteAlreadySaved());
 
-      setShowSavePopup(true);
-
-      setTimeout(() => {
-        setShowSavePopup(false);
-      }, 2000);
+      if (!alreadySaved) setShowSavePopup(true);
+      if (alreadySaved) {
+        setTimeout(() => {
+          setAlreadySaved(false);
+        }, 2000);
+      }
     }
 
     if (props.libraryMode) {
       ctx.handleLibraryVisibility();
     }
   };
+
+  const alreadySavedMsg = props.saveMode && alreadySaved && (
+    <p className='save-popup'>Palette already saved</p>
+  );
+
+  const saveModal = props.saveMode && showSavePopup && (
+    <Modal>
+      <input type='text' />
+    </Modal>
+  );
 
   return (
     <ButtonWrapper>
@@ -84,9 +92,8 @@ const ControlPanelButton = props => {
 
       <p className='label'>{props.label}</p>
 
-      {props.saveMode && showSavePopup && (
-        <p className='save-popup'>{popupMessage}</p>
-      )}
+      {alreadySavedMsg}
+      {saveModal}
     </ButtonWrapper>
   );
 };
