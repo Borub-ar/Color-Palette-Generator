@@ -48,10 +48,11 @@ function App() {
     return savedColorPalettes.some(palette => palette.id === currentPaletteId);
   };
 
-  const saveColorPalette = () => {
+  const saveColorPalette = paletteName => {
     setSavedColorPalettes(prevState => [
       ...prevState,
       {
+        paletteName,
         id: currentPaletteId,
         colors: colors,
       },
