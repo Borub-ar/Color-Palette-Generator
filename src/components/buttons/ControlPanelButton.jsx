@@ -11,7 +11,7 @@ const ButtonWrapper = styled.div`
   justify-content: center;
   gap: 10px;
 
-  & .action {
+  .action {
     border: none;
     font-size: 1.4rem;
     background-color: var(--default-dark);
@@ -50,7 +50,7 @@ const ButtonWrapper = styled.div`
 
 const ControlPanelButton = props => {
   const ctx = useContext(PaletteContext);
-  const [alreadySaved, setAlreadySaved] = useState(false);
+  const [showAlreadySavedMsg, setShowAlreadySavedMsg] = useState();
   const [showSavePopup, setShowSavePopup] = useState(false);
 
   const closeSaveModal = () => {
@@ -63,12 +63,15 @@ const ControlPanelButton = props => {
     }
 
     if (props.saveMode) {
-      setAlreadySaved(ctx.checkIfPaletteAlreadySaved());
+      const alreadySaved = ctx.checkIfPaletteAlreadySaved();
 
       if (!alreadySaved) setShowSavePopup(true);
+      
       if (alreadySaved) {
+        setShowAlreadySavedMsg(true);
+
         setTimeout(() => {
-          setAlreadySaved(false);
+          setShowAlreadySavedMsg(false);
         }, 2000);
       }
     }
@@ -78,7 +81,7 @@ const ControlPanelButton = props => {
     }
   };
 
-  const alreadySavedMsg = props.saveMode && alreadySaved && (
+  const alreadySavedMsg = props.saveMode && showAlreadySavedMsg && (
     <p className='save-popup'>Palette already saved</p>
   );
 
