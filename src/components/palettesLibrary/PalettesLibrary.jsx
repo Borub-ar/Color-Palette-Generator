@@ -1,20 +1,11 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+
 import PaletteContext from '../../store/palette-context';
 import LibraryTile from './LibraryTile';
-import ModalOverlay from '../StyledComponents/ModalOverlay';
+import Modal from '../Modal/Modal';
 
-const Modal = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  padding: 2rem 2rem;
-  border-radius: 15px;
-  width: 50vh;
-
+const LibraryList = styled.div`
   .list-wrapper {
     display: flex;
     flex-direction: column;
@@ -24,17 +15,6 @@ const Modal = styled.div`
     border: 3px solid var(--main-blue);
     border-radius: 5px;
     overflow-y: scroll;
-  }
-
-  .close-icon {
-    position: absolute;
-    top: -5rem;
-    right: -5rem;
-    font-size: 4rem;
-    cursor: pointer;
-    color: #fff;
-    background-color: transparent;
-    border: none;
   }
 `;
 
@@ -50,14 +30,11 @@ const PalettesLibrary = () => {
   ));
 
   return (
-    <ModalOverlay>
-      <Modal>
-        <button className='close-icon' aria-label='Close modal'>
-          <FontAwesomeIcon icon={faCircleXmark} onClick={closeModal} />
-        </button>
+    <Modal handleClose={closeModal}>
+      <LibraryList>
         <div className='list-wrapper'>{savedPalettes}</div>
-      </Modal>
-    </ModalOverlay>
+      </LibraryList>
+    </Modal>
   );
 };
 
