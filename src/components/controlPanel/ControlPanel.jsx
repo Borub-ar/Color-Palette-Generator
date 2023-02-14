@@ -12,7 +12,7 @@ const PanelWrapper = styled.section`
   align-items: center;
   flex-direction: column;
   gap: 20px;
-  background-color: var(--mainBackground);
+  background-color: var(--main-background);
   padding: 2rem 7rem;
   height: 25vh;
   width: 100%;

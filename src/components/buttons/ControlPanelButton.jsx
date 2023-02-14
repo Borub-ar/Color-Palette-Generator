@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PaletteContext from '../../store/palette-context';
-import Modal from '../Modal/Modal';
+import SaveModal from '../ControlPanel/SaveModal';
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -14,8 +14,8 @@ const ButtonWrapper = styled.div`
   & .action {
     border: none;
     font-size: 1.4rem;
-    background-color: var(--defaultDark);
-    color: var(--mainBackground);
+    background-color: var(--default-dark);
+    color: var(--main-background);
     padding: 10px 30px;
     border-radius: 5px;
     cursor: pointer;
@@ -30,7 +30,7 @@ const ButtonWrapper = styled.div`
     text-align: center;
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--defaultDark);
+    color: var(--default-dark);
   }
 
   .save-popup {
@@ -39,7 +39,7 @@ const ButtonWrapper = styled.div`
     left: 50%;
     transform: translateX(-50%);
     width: max-content;
-    background-color: var(--defaultDark);
+    background-color: var(--default-dark);
     color: #fff;
     font-size: 1.1rem;
     font-weight: 700;
@@ -52,6 +52,10 @@ const ControlPanelButton = props => {
   const ctx = useContext(PaletteContext);
   const [alreadySaved, setAlreadySaved] = useState(false);
   const [showSavePopup, setShowSavePopup] = useState(false);
+
+  const closeSaveModal = () => {
+    setShowSavePopup(false);
+  };
 
   const handleClick = () => {
     if (props.generateMode) {
@@ -78,12 +82,6 @@ const ControlPanelButton = props => {
     <p className='save-popup'>Palette already saved</p>
   );
 
-  const saveModal = props.saveMode && showSavePopup && (
-    <Modal>
-      <input type='text' />
-    </Modal>
-  );
-
   return (
     <ButtonWrapper>
       <button className='action' aria-label={props.label} onClick={handleClick}>
@@ -93,7 +91,10 @@ const ControlPanelButton = props => {
       <p className='label'>{props.label}</p>
 
       {alreadySavedMsg}
-      {saveModal}
+
+      {props.saveMode && showSavePopup && (
+        <SaveModal handleClose={closeSaveModal} />
+      )}
     </ButtonWrapper>
   );
 };
