@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faLockOpen,
-  faLock,
-  faSliders,
-} from '@fortawesome/free-solid-svg-icons';
+import { faLockOpen, faLock, faSliders } from '@fortawesome/free-solid-svg-icons';
 
 const BarWrapper = styled.div`
   display: flex;
@@ -47,11 +43,7 @@ const SingleColorBar = props => {
     console.log('change');
   };
 
-  const lockIcon = colorChangeLocked ? (
-    <FontAwesomeIcon icon={faLock} />
-  ) : (
-    <FontAwesomeIcon icon={faLockOpen} />
-  );
+  const lockIcon = colorChangeLocked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />;
 
   return (
     <BarWrapper color={color}>

@@ -25,9 +25,7 @@ const PalettesLibrary = () => {
     ctx.handleLibraryVisibility();
   };
 
-  const savedPalettes = ctx.savedColorPalettes.map(palette => (
-    <LibraryTile key={palette.id} paletteData={palette} />
-  ));
+  const savedPalettes = ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />);
 
   return (
     <Modal handleClose={closeModal}>

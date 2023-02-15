@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-  faBook,
-  faArrowRotateRight,
-  faFloppyDisk,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import ControlPanelButton from '../buttons/ControlPanelButton';
 import BarQuantityController from './BarQuantityController';
 
@@ -33,11 +29,7 @@ const MainPanel = () => {
       <BarQuantityController />
       <div className='buttons-wrapper'>
         <ControlPanelButton libraryMode label='Library' icon={faBook} />
-        <ControlPanelButton
-          generateMode
-          label='Generate'
-          icon={faArrowRotateRight}
-        />
+        <ControlPanelButton generateMode label='Generate' icon={faArrowRotateRight} />
         <ControlPanelButton saveMode label='Save' icon={faFloppyDisk} />
       </div>
     </PanelWrapper>

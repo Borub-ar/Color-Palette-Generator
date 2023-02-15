@@ -57,8 +57,6 @@ function App() {
         colors: colors,
       },
     ]);
-
-    return true;
   };
 
   const handleLibraryVisibility = () => {
