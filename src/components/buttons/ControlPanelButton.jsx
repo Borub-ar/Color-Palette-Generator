@@ -66,7 +66,7 @@ const ControlPanelButton = props => {
       const alreadySaved = ctx.checkIfPaletteAlreadySaved();
 
       if (!alreadySaved) setShowSavePopup(true);
-      
+
       if (alreadySaved) {
         setShowAlreadySavedMsg(true);
 
@@ -81,9 +81,7 @@ const ControlPanelButton = props => {
     }
   };
 
-  const alreadySavedMsg = props.saveMode && showAlreadySavedMsg && (
-    <p className='save-popup'>Palette already saved</p>
-  );
+  const alreadySavedMsg = props.saveMode && showAlreadySavedMsg && <p className='save-popup'>Palette already saved</p>;
 
   return (
     <ButtonWrapper>
@@ -95,9 +93,7 @@ const ControlPanelButton = props => {
 
       {alreadySavedMsg}
 
-      {props.saveMode && showSavePopup && (
-        <SaveModal handleClose={closeSaveModal} />
-      )}
+      {props.saveMode && showSavePopup && <SaveModal handleClose={closeSaveModal} />}
     </ButtonWrapper>
   );
 };

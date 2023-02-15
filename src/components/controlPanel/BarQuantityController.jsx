@@ -121,15 +121,7 @@ const BarQuantityController = () => {
   return (
     <InputWrapper>
       <label htmlFor='bar-quantity'>Color Bars</label>
-      <input
-        type='range'
-        id='bar-quantity'
-        step='1'
-        min='2'
-        max='9'
-        defaultValue={barsQuantity}
-        onChange={handleQuantityChange}
-      />
+      <input type='range' id='bar-quantity' step='1' min='2' max='9' defaultValue={barsQuantity} onChange={handleQuantityChange} />
       <p>{barsQuantity}</p>
     </InputWrapper>
   );
