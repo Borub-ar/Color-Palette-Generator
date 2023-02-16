@@ -18,7 +18,7 @@ const ModalOverlay = styled.div`
     background-color: #fff;
     padding: 2rem 2rem;
     border-radius: 15px;
-    width: 50vh;
+    width: 60vh;
   }
 
   .close-icon {
