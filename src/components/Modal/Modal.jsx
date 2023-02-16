@@ -10,6 +10,8 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #000000a2;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
 
   .modal {
     position: relative;

@@ -45,6 +45,8 @@ const ButtonWrapper = styled.div`
     font-weight: 700;
     padding: 0.5rem 1rem;
     border-radius: 10px;
+    animation-name: fade-in;
+    animation-duration: 0.5s;
   }
 `;
 
