@@ -23,7 +23,7 @@ const LibraryList = styled.div`
   }
 
   .list-wrapper::-webkit-scrollbar-thumb {
-    background-color: #5e35bd;
+    background-color: var(--default-dark);
     border-radius: 10px;
   }
 `;

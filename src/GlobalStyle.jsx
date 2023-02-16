@@ -20,4 +20,13 @@ export default createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+
+    @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;

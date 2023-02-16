@@ -5,8 +5,9 @@ import { faTrash, faPaintBrush } from '@fortawesome/free-solid-svg-icons';
 
 const Tile = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr min-content;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
+  column-gap: 2rem;
   padding: 1rem;
   border-radius: 5px;
   box-shadow: 0px -0px 24px -7px rgba(66, 68, 90, 1);
@@ -20,7 +21,6 @@ const Tile = styled.div`
     display: flex;
     align-items: center;
     column-gap: 0.2rem;
-    margin-inline: 1rem 4.5rem;
   }
 
   .buttons-wrapper {
@@ -37,6 +37,7 @@ const Tile = styled.div`
     border-radius: 4px;
     cursor: pointer;
     color: #fff;
+    transition: opacity 0.4s;
   }
 
   .delete-button,
@@ -45,11 +46,15 @@ const Tile = styled.div`
   }
 
   .delete-button {
-    background-color: red;
+    background-color: #af2525;
   }
 
   .modify-button {
     background-color: var(--main-blue);
+  }
+
+  .buttons-wrapper :is(.delete-button:hover, .modify-button:hover) {
+    opacity: 0.8;
   }
 `;
 

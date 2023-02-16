@@ -17,6 +17,10 @@ const TileWrapper = styled.button`
   transition: width .3s ease-in-out;
 
   .copy-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: #fff;
   }
 
