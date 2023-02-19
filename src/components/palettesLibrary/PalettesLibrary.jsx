@@ -11,7 +11,7 @@ const LibraryList = styled.div`
     flex-direction: column;
     row-gap: 1rem;
     height: 20rem;
-    padding: 1.3rem .5rem;
+    padding: 1.3rem 0.5rem;
     border: 3px solid var(--main-blue);
     border-radius: 5px;
     overflow-y: scroll;
@@ -35,7 +35,12 @@ const PalettesLibrary = () => {
     ctx.handleLibraryVisibility();
   };
 
-  const savedPalettes = ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />);
+  const savedPalettes =
+    ctx.savedColorPalettes.length === 0 ? (
+      <p>dsadsad</p>
+    ) : (
+      ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />)
+    );
 
   return (
     <Modal handleClose={closeModal}>

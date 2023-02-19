@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Color from './Color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPaintBrush } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from 'react';
+import PaletteContext from '../../store/palette-context';
 
 const Tile = styled.div`
   display: grid;
@@ -59,12 +61,16 @@ const Tile = styled.div`
 `;
 
 const LibraryTile = props => {
+  const ctx = useContext(PaletteContext);
   const colors = props.paletteData.colors.map(color => ({ color, id: crypto.randomUUID() }));
-  const paletteName = props.paletteData.paletteName;
+
+  const deleteSavedPalette = () => {
+    ctx.deleteSavedPalette(props.paletteData.id);
+  };
 
   return (
     <Tile>
-      <p className='name'>{paletteName}</p>
+      <p className='name'>{props.paletteData.paletteName}</p>
 
       <div className='palette-colors'>
         {colors.map(color => (
@@ -73,7 +79,7 @@ const LibraryTile = props => {
       </div>
 
       <div className='buttons-wrapper'>
-        <button className='delete-button' aria-label='Delete this palette'>
+        <button className='delete-button' onClick={deleteSavedPalette} aria-label='Delete this palette'>
           <FontAwesomeIcon icon={faTrash} />
         </button>
         <button className='modify-button' aria-label='Modify this palette'>

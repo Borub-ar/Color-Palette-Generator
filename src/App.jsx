@@ -17,7 +17,7 @@ const Wrapper = styled.main`
 function App() {
   const [currentPaletteId, setCurrentPaletteId] = useState('');
   const [savedColorPalettes, setSavedColorPalettes] = useState([]);
-  const [colors, setColors] = useState([]);
+  const [currentColors, setCurrentColors] = useState([]);
   const [numberOfBars, setNumberOfBars] = useState(5);
   const [showLibrary, setShowLibrary] = useState(false);
 
@@ -31,7 +31,7 @@ function App() {
       }
       generatedColors.push(hex);
     }
-    setColors(generatedColors);
+    setCurrentColors(generatedColors);
     generatePaletteId();
   };
 
@@ -48,13 +48,18 @@ function App() {
     return savedColorPalettes.some(palette => palette.id === currentPaletteId);
   };
 
+  const deleteSavedPalette = id => {
+    const newPalettesArray = savedColorPalettes.filter(item => item.id !== id);
+    setSavedColorPalettes(newPalettesArray);
+  };
+
   const saveColorPalette = paletteName => {
     setSavedColorPalettes(prevState => [
       ...prevState,
       {
         paletteName,
+        colors: currentColors,
         id: currentPaletteId,
-        colors: colors,
       },
     ]);
   };
@@ -64,13 +69,14 @@ function App() {
   };
 
   const providerValues = {
-    colors,
-    setColors,
+    currentColors,
+    setCurrentColors,
     numberOfBars,
     updateColorBarsQuantity,
     generateRandomHexColors,
     checkIfPaletteAlreadySaved,
     saveColorPalette,
+    deleteSavedPalette,
     savedColorPalettes,
     handleLibraryVisibility,
   };
