@@ -14,7 +14,7 @@ const TileWrapper = styled.button`
   border: none;
   background-color: ${props => props.color};
   cursor: pointer;
-  transition: width .3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 
   .copy-icon {
     position: absolute;
@@ -35,20 +35,38 @@ const TileWrapper = styled.button`
     background-color: var(--default-dark);
     color: #fff;
     font-weight: 700;
+    white-space: nowrap;
   }
 `;
 
 const Color = props => {
   const [showColorInfo, setShowColorInfo] = useState(false);
+  const [popupMsg, setPopupMsg] = useState(props.color);
 
   const handleColorInfoVisibility = () => {
     setShowColorInfo(state => !state);
   };
 
+  const copyValue = async () => {
+    try {
+      await navigator.clipboard.writeText(props.color);
+      setPopupMsg('Color copied');
+      setTimeout(() => {
+        setPopupMsg(props.color);
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <TileWrapper color={props.color} onMouseEnter={handleColorInfoVisibility} onMouseLeave={handleColorInfoVisibility}>
+    <TileWrapper
+      color={props.color}
+      onMouseEnter={handleColorInfoVisibility}
+      onMouseLeave={handleColorInfoVisibility}
+      onClick={copyValue}>
       {showColorInfo && <FontAwesomeIcon icon={faCopy} className='copy-icon' />}
-      {showColorInfo && <p className='color-info'>{props.color}</p>}
+      {showColorInfo && <p className='color-info'>{popupMsg}</p>}
     </TileWrapper>
   );
 };

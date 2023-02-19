@@ -26,6 +26,14 @@ const LibraryList = styled.div`
     background-color: var(--default-dark);
     border-radius: 10px;
   }
+
+  .empty-library-msg {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-top: 5rem;
+    color: var(--default-dark);
+  }
 `;
 
 const PalettesLibrary = () => {
@@ -37,7 +45,7 @@ const PalettesLibrary = () => {
 
   const savedPalettes =
     ctx.savedColorPalettes.length === 0 ? (
-      <p>dsadsad</p>
+      <p className='empty-library-msg'>No palettes saved</p>
     ) : (
       ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />)
     );
