@@ -50,7 +50,7 @@ const Color = props => {
   const copyValue = async () => {
     try {
       await navigator.clipboard.writeText(props.color);
-      setPopupMsg('Color copied');
+      setPopupMsg('Color copied!');
       setTimeout(() => {
         setPopupMsg(props.color);
       }, 2000);
