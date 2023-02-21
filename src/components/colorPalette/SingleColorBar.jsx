@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock, faSliders } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState, useRef } from 'react';
 
 const BarWrapper = styled.div`
   display: flex;
@@ -13,6 +13,15 @@ const BarWrapper = styled.div`
 
   &:hover {
     opacity: 0.9;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .color-input {
+    position: absolute;
+    visibility: hidden;
   }
 
   p {
@@ -34,13 +43,24 @@ const BarWrapper = styled.div`
 const SingleColorBar = props => {
   const [color, setColor] = useState(props.color);
   const [colorChangeLocked, setColorChangeLocked] = useState(false);
+  const [colorPickerIsOpen, setColorPickerIsOpen] = useState(false);
+
+  const colorPickerRef = useRef(null);
+
+  useEffect(() => {
+    if (colorPickerIsOpen) colorPickerRef.current.click();
+  }, [colorPickerIsOpen]);
 
   const handleColorChangeLock = () => {
     setColorChangeLocked(current => !current);
   };
 
-  const handleColorChange = () => {
-    console.log('change');
+  const handleColorPickerVisibility = () => {
+    setColorPickerIsOpen(prevState => !prevState);
+  };
+
+  const handleColorChange = event => {
+    setColor(event.target.value);
   };
 
   const lockIcon = colorChangeLocked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />;
@@ -48,8 +68,20 @@ const SingleColorBar = props => {
   return (
     <BarWrapper color={color}>
       <p>{color}</p>
-      <button aria-label='Set current bar color' onClick={handleColorChange}>
+      <button aria-label='Open color picker' onClick={handleColorPickerVisibility}>
         <FontAwesomeIcon icon={faSliders} />
+        <label className='hidden' htmlFor='color-picker'>
+          Color picker
+        </label>
+        <input
+          className='color-input'
+          id='color-picker'
+          type='color'
+          value={color}
+          onChange={handleColorChange}
+          onBlur={handleColorPickerVisibility}
+          ref={colorPickerRef}
+        />
       </button>
       <button aria-label='Lock current color' onClick={handleColorChangeLock}>
         {lockIcon}
