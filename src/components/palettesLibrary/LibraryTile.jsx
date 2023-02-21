@@ -131,24 +131,21 @@ const LibraryTile = props => {
   const tileRef = useRef();
 
   useEffect(() => {
+    const handleDeleteButtonAnimationEnd = event => {
+      event.stopPropagation();
+      setTileAnimation(true);
+    };
+
+    const handleTileAnimationEnd = () => {
+      ctx.deleteSavedPalette(props.paletteData.id);
+    };
+
     deleteButtonRef.current.addEventListener('animationend', handleDeleteButtonAnimationEnd);
+    tileRef.current.addEventListener('animationend', handleTileAnimationEnd);
   }, []);
 
-  const startDeleteAnimation = () => {
+  const startDeleteAnimations = () => {
     setButtonAnimation(true);
-  };
-
-  const handleDeleteButtonAnimationEnd = event => {
-    event.stopPropagation();
-    event.preventDefault();
-    deleteButtonRef.current.removeEventListener('animationend', handleDeleteButtonAnimationEnd);
-    tileRef.current.addEventListener('animationend', handleTileAnimationEnd);
-    setTileAnimation(true);
-  };
-
-  const handleTileAnimationEnd = () => {
-    console.log('asdsa');
-    // ctx.deleteSavedPalette(props.paletteData.id);
   };
 
   return (
@@ -164,8 +161,8 @@ const LibraryTile = props => {
       <div className='buttons-wrapper'>
         <button
           ref={deleteButtonRef}
+          onClick={startDeleteAnimations}
           className='delete-button'
-          onClick={startDeleteAnimation}
           aria-label='Delete palette'></button>
         <button className='modify-button' aria-label='Modify palette'>
           <FontAwesomeIcon icon={faPaintBrush} />
