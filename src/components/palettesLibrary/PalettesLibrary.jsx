@@ -15,6 +15,7 @@ const LibraryList = styled.div`
     border: 3px solid var(--main-blue);
     border-radius: 5px;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .list-wrapper::-webkit-scrollbar {
