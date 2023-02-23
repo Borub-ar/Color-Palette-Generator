@@ -49,8 +49,7 @@ function App() {
   };
 
   const deleteSavedPalette = id => {
-    const newPalettesArray = savedColorPalettes.filter(item => item.id !== id);
-    setSavedColorPalettes(newPalettesArray);
+    setSavedColorPalettes(prevState => prevState.filter(item => item.id !== id));
   };
 
   const saveColorPalette = paletteName => {
