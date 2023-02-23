@@ -29,7 +29,7 @@ function App() {
       for (let i = 0; i < 6; i++) {
         hex += letters[Math.floor(Math.random() * 16)];
       }
-      generatedColors.push(hex);
+      generatedColors.push({ color: hex, id: crypto.randomUUID() });
     }
     setCurrentColors(generatedColors);
     generatePaletteId();

@@ -68,7 +68,6 @@ const ControlPanelButton = props => {
       const alreadySaved = ctx.checkIfPaletteAlreadySaved();
 
       if (!alreadySaved) setShowSavePopup(true);
-
       if (alreadySaved) {
         setShowAlreadySavedMsg(true);
 
