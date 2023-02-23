@@ -18,7 +18,9 @@ const ColorPalette = () => {
     ctx.generateRandomHexColors();
   }, []);
 
-  const colorBars = ctx.currentColors.map(hexColor => <SingleColorBar key={hexColor} color={hexColor} />);
+  const colorBars = ctx.currentColors.map(hexColor => (
+    <SingleColorBar key={hexColor.id} color={hexColor.color} colorId={hexColor.id} />
+  ));
 
   return <PaletteWrapper>{colorBars}</PaletteWrapper>;
 };

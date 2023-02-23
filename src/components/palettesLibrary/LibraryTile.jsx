@@ -129,7 +129,7 @@ const LibraryTile = props => {
   const deleteButtonRef = useRef();
   const tileRef = useRef();
 
-  const colors = props.paletteData.colors.map(color => ({ color, id: crypto.randomUUID() }));
+  const colors = props.paletteData.colors;
 
   useEffect(() => {
     const handleDeleteButtonAnimationEnd = event => {
@@ -163,7 +163,7 @@ const LibraryTile = props => {
 
       <div className='palette-colors'>
         {colors.map(color => (
-          <Color key={color.id} color={color.color} />
+          <Color key={color.id} color={color.color} id={color.id} />
         ))}
       </div>
 
