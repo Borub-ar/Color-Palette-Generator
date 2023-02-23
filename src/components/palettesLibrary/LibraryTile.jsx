@@ -125,10 +125,11 @@ const LibraryTile = props => {
   const [tileAnimation, setTileAnimation] = useState(false);
 
   const ctx = useContext(PaletteContext);
-  const colors = props.paletteData.colors.map(color => ({ color, id: crypto.randomUUID() }));
 
   const deleteButtonRef = useRef();
   const tileRef = useRef();
+
+  const colors = props.paletteData.colors.map(color => ({ color, id: crypto.randomUUID() }));
 
   useEffect(() => {
     const handleDeleteButtonAnimationEnd = event => {
@@ -140,8 +141,16 @@ const LibraryTile = props => {
       ctx.deleteSavedPalette(props.paletteData.id);
     };
 
-    deleteButtonRef.current.addEventListener('animationend', handleDeleteButtonAnimationEnd);
-    tileRef.current.addEventListener('animationend', handleTileAnimationEnd);
+    const deleteButton = deleteButtonRef.current;
+    const tile = tileRef.current;
+
+    deleteButton.addEventListener('animationend', handleDeleteButtonAnimationEnd);
+    tile.addEventListener('animationend', handleTileAnimationEnd);
+
+    return () => {
+      deleteButton.removeEventListener('animationend', handleDeleteButtonAnimationEnd);
+      tile.removeEventListener('animationend', handleTileAnimationEnd);
+    };
   }, []);
 
   const startDeleteAnimations = () => {
