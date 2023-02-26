@@ -3,6 +3,7 @@ import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PaletteContext from '../../store/palette-context';
 import SaveModal from '../ControlPanel/SaveModal';
+import { useEffect } from 'react';
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -58,6 +59,10 @@ const ControlPanelButton = props => {
   const closeSaveModal = () => {
     setShowSavePopup(false);
   };
+
+  useEffect(() => {
+    if (!props.saveMode) return;
+  }, [ctx.updateMode]);
 
   const handleClick = () => {
     if (props.generateMode) {

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock, faSliders } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useContext } from 'react';
+import PaletteContext from '../../store/palette-context';
 
 const BarWrapper = styled.div`
   display: flex;
@@ -45,6 +46,8 @@ const SingleColorBar = props => {
   const [colorChangeLocked, setColorChangeLocked] = useState(false);
   const [colorPickerIsOpen, setColorPickerIsOpen] = useState(false);
 
+  const ctx = useContext(PaletteContext);
+
   const colorPickerRef = useRef(null);
 
   useEffect(() => {
@@ -60,7 +63,9 @@ const SingleColorBar = props => {
   };
 
   const handleColorChange = event => {
-    setColor(event.target.value);
+    const newColor = event.target.value;
+    setColor(newColor);
+    ctx.handleSingleColorChange(props.colorId, newColor);
   };
 
   const lockIcon = colorChangeLocked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />;

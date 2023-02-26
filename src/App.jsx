@@ -16,10 +16,11 @@ const Wrapper = styled.main`
 
 function App() {
   const [currentPaletteId, setCurrentPaletteId] = useState('');
-  const [savedColorPalettes, setSavedColorPalettes] = useState([]);
   const [currentColors, setCurrentColors] = useState([]);
+  const [savedColorPalettes, setSavedColorPalettes] = useState([]);
   const [numberOfBars, setNumberOfBars] = useState(5);
   const [showLibrary, setShowLibrary] = useState(false);
+  const [updateMode, setUpdateMode] = useState(false);
 
   const generateRandomHexColors = () => {
     const generatedColors = [];
@@ -31,6 +32,7 @@ function App() {
       }
       generatedColors.push({ color: hex, id: crypto.randomUUID() });
     }
+    setUpdateMode(false)
     setCurrentColors(generatedColors);
     generatePaletteId();
   };
@@ -50,6 +52,17 @@ function App() {
 
   const deleteSavedPalette = id => {
     setSavedColorPalettes(prevState => prevState.filter(item => item.id !== id));
+  };
+
+  const handleSingleColorChange = (colorId, newColor) => {
+    setCurrentColors(prevState => {
+      const colorIndex = prevState.findIndex(color => color.id === colorId);
+      prevState[colorIndex].color = newColor;
+      return prevState;
+    });
+
+    const paletteAlreadySaved = checkIfPaletteAlreadySaved();
+    setUpdateMode(paletteAlreadySaved);
   };
 
   const saveColorPalette = paletteName => {
@@ -78,6 +91,8 @@ function App() {
     deleteSavedPalette,
     savedColorPalettes,
     handleLibraryVisibility,
+    handleSingleColorChange,
+    updateMode,
   };
 
   return (
