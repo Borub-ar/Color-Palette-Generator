@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import ControlPanelButton from '../buttons/ControlPanelButton';
 import BarQuantityController from './BarQuantityController';
-import SaveModal from '../Modal/SaveModal';
-import UpdateModal from '../Modal/UpdateModal';
+import SaveModal from '../Modals/SaveModal';
+import UpdateModal from '../Modals/UpdateModal';
 import PaletteContext from '../../store/palette-context';
 
 const PanelWrapper = styled.section`
@@ -32,8 +32,8 @@ const MainPanel = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const ctx = useContext(PaletteContext);
 
-  const openProperModal = () => {
-    ctx.updateMode ? setShowUpdateModal(true) : setShowSaveModal(true);
+  const openProperModal = isAlreadySaved => {
+    ctx.updateMode && isAlreadySaved ? setShowUpdateModal(true) : setShowSaveModal(true);
   };
 
   const closeSaveModal = () => {

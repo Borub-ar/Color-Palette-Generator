@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import PaletteContext from '../../store/palette-context';
 import LibraryTile from './LibraryTile';
-import ModalBase from '../Modal/ModalBase';
+import ModalBase from '../Modals/ModalBase';
 
 const LibraryList = styled.div`
   .list-wrapper {

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PaletteContext from '../../store/palette-context';
-import { useEffect } from 'react';
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -51,29 +50,26 @@ const ButtonWrapper = styled.div`
 `;
 
 const ControlPanelButton = props => {
-  const ctx = useContext(PaletteContext);
   const [showAlreadySavedMsg, setShowAlreadySavedMsg] = useState();
+  const ctx = useContext(PaletteContext);
 
   const handleClick = () => {
-    if (props.generateMode) {
-      ctx.generateRandomHexColors();
-    }
+    if (props.saveMode) handleSave();
+    if (props.generateMode) ctx.generateRandomHexColors();
+    if (props.libraryMode) ctx.handleLibraryVisibility();
+  };
 
-    if (props.saveMode) {
-      const alreadySaved = ctx.checkIfPaletteAlreadySaved();
+  const handleSave = () => {
+    const isAlreadySaved = ctx.checkIfPaletteAlreadySaved();
 
-      if (!alreadySaved || ctx.updateMode) props.openProperModal();
-      if (alreadySaved && !ctx.updateMode) {
-        setShowAlreadySavedMsg(true);
+    if (!isAlreadySaved) ctx.changeUpdateMode(false);
+    if (!isAlreadySaved || ctx.updateMode) props.openProperModal(isAlreadySaved);
+    if (isAlreadySaved && !ctx.updateMode) {
+      setShowAlreadySavedMsg(true);
 
-        setTimeout(() => {
-          setShowAlreadySavedMsg(false);
-        }, 2000);
-      }
-    }
-
-    if (props.libraryMode) {
-      ctx.handleLibraryVisibility();
+      setTimeout(() => {
+        setShowAlreadySavedMsg(false);
+      }, 2000);
     }
   };
 

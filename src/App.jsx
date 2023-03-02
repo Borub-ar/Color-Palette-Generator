@@ -32,7 +32,7 @@ function App() {
       }
       generatedColors.push({ color: hex, id: crypto.randomUUID() });
     }
-    setUpdateMode(false)
+    setUpdateMode(false);
     setCurrentColors(generatedColors);
     generatePaletteId();
   };
