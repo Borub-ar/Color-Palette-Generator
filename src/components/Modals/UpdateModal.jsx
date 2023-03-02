@@ -31,6 +31,10 @@ const ButtonsWrapper = styled.div`
 `;
 
 const UpdateModal = props => {
+  const handleSaveAsNew = () => {};
+
+  const handleUpdatePalette = () => {};
+
   return (
     <ModalBase handleClose={props.handleClose}>
       <ButtonsWrapper>
