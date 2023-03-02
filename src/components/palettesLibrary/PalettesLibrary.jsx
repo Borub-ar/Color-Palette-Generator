@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import PaletteContext from '../../store/palette-context';
 import LibraryTile from './LibraryTile';
-import Modal from '../Modal/Modal';
+import ModalBase from '../Modal/ModalBase';
 
 const LibraryList = styled.div`
   .list-wrapper {
@@ -52,11 +52,11 @@ const PalettesLibrary = () => {
     );
 
   return (
-    <Modal handleClose={closeModal}>
+    <ModalBase handleClose={closeModal}>
       <LibraryList>
         <div className='list-wrapper'>{savedPalettes}</div>
       </LibraryList>
-    </Modal>
+    </ModalBase>
   );
 };
 

@@ -35,7 +35,7 @@ const ModalOverlay = styled.div`
   }
 `;
 
-const Modal = props => {
+const ModalBase = props => {
   return (
     <ModalOverlay>
       <div className='modal'>
@@ -48,4 +48,4 @@ const Modal = props => {
   );
 };
 
-export default Modal;
+export default ModalBase;
