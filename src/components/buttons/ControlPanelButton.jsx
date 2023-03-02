@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PaletteContext from '../../store/palette-context';
-import SaveModal from '../ControlPanel/SaveModal';
 import { useEffect } from 'react';
 
 const ButtonWrapper = styled.div`
@@ -54,15 +53,6 @@ const ButtonWrapper = styled.div`
 const ControlPanelButton = props => {
   const ctx = useContext(PaletteContext);
   const [showAlreadySavedMsg, setShowAlreadySavedMsg] = useState();
-  const [showSavePopup, setShowSavePopup] = useState(false);
-
-  const closeSaveModal = () => {
-    setShowSavePopup(false);
-  };
-
-  useEffect(() => {
-    if (!props.saveMode) return;
-  }, [ctx.updateMode]);
 
   const handleClick = () => {
     if (props.generateMode) {
@@ -72,8 +62,8 @@ const ControlPanelButton = props => {
     if (props.saveMode) {
       const alreadySaved = ctx.checkIfPaletteAlreadySaved();
 
-      if (!alreadySaved) setShowSavePopup(true);
-      if (alreadySaved) {
+      if (!alreadySaved || ctx.updateMode) props.openProperModal();
+      if (alreadySaved && !ctx.updateMode) {
         setShowAlreadySavedMsg(true);
 
         setTimeout(() => {
@@ -91,15 +81,12 @@ const ControlPanelButton = props => {
 
   return (
     <ButtonWrapper>
+      {alreadySavedMsg}
       <button className='action' aria-label={props.label} onClick={handleClick}>
         <FontAwesomeIcon icon={props.icon} />
       </button>
 
       <p className='label'>{props.label}</p>
-
-      {alreadySavedMsg}
-
-      {props.saveMode && showSavePopup && <SaveModal handleClose={closeSaveModal} />}
     </ButtonWrapper>
   );
 };

@@ -1,7 +1,11 @@
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import ControlPanelButton from '../buttons/ControlPanelButton';
 import BarQuantityController from './BarQuantityController';
+import SaveModal from '../Modal/SaveModal';
+import UpdateModal from '../Modal/UpdateModal';
+import PaletteContext from '../../store/palette-context';
 
 const PanelWrapper = styled.section`
   display: flex;
@@ -24,14 +28,33 @@ const PanelWrapper = styled.section`
 `;
 
 const MainPanel = () => {
+  const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const ctx = useContext(PaletteContext);
+
+  const openProperModal = () => {
+    ctx.updateMode ? setShowUpdateModal(true) : setShowSaveModal(true);
+  };
+
+  const closeSaveModal = () => {
+    setShowSaveModal(false);
+  };
+
+  const closeUpdateModal = () => {
+    setShowUpdateModal(false);
+  };
+
   return (
     <PanelWrapper>
       <BarQuantityController />
       <div className='buttons-wrapper'>
         <ControlPanelButton libraryMode label='Library' icon={faBook} />
         <ControlPanelButton generateMode label='Generate' icon={faArrowRotateRight} />
-        <ControlPanelButton saveMode label='Save' icon={faFloppyDisk} />
+        <ControlPanelButton saveMode label='Save' openProperModal={openProperModal} icon={faFloppyDisk} />
       </div>
+
+      {showSaveModal && <SaveModal handleClose={closeSaveModal} />}
+      {showUpdateModal && <UpdateModal handleClose={closeUpdateModal} />}
     </PanelWrapper>
   );
 };

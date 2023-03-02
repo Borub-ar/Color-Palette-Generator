@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import PaletteContext from '../../store/palette-context';
 import styled from 'styled-components';
-import Modal from '../Modal/Modal';
+import ModalBase from './ModalBase';
 
 const SaveInputWrapper = styled.div`
   display: flex;
@@ -69,7 +69,7 @@ const SaveModal = props => {
   };
 
   return (
-    <Modal handleClose={props.handleClose}>
+    <ModalBase handleClose={props.handleClose}>
       <SaveInputWrapper>
         <label htmlFor='name-input'>Choose palette name</label>
         <input type='text' id='name-input' autoComplete='off' onBlur={savePaletteName} />
@@ -78,7 +78,7 @@ const SaveModal = props => {
           Save
         </button>
       </SaveInputWrapper>
-    </Modal>
+    </ModalBase>
   );
 };
 
