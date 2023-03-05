@@ -80,6 +80,14 @@ function App() {
     setShowLibrary(prevState => !prevState);
   };
 
+  const updatePalette = () => {
+    setSavedColorPalettes(prevState => {});
+  };
+
+  const changeUpdateMode = state => {
+    setUpdateMode(state);
+  };
+
   const providerValues = {
     currentColors,
     setCurrentColors,
@@ -93,6 +101,8 @@ function App() {
     handleLibraryVisibility,
     handleSingleColorChange,
     updateMode,
+    updatePalette,
+    changeUpdateMode,
   };
 
   return (
