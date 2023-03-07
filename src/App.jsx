@@ -81,7 +81,14 @@ function App() {
   };
 
   const updatePalette = () => {
-    setSavedColorPalettes(prevState => {});
+    setSavedColorPalettes(prevState => {
+      const updatedState = [...prevState];
+      const paletteIndex = prevState.findIndex(el => el.id === currentPaletteId);
+      updatedState[paletteIndex].colors = currentColors;
+      return updatedState;
+    });
+
+    setUpdateMode(false);
   };
 
   const changeUpdateMode = state => {

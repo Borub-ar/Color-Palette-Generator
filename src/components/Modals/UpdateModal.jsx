@@ -1,5 +1,7 @@
 import ModalBase from './ModalBase';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import PaletteContext from '../../store/palette-context';
 
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -31,15 +33,17 @@ const ButtonsWrapper = styled.div`
 `;
 
 const UpdateModal = props => {
-  const handleSaveAsNew = () => {};
+  const ctx = useContext(PaletteContext);
 
-  const handleUpdatePalette = () => {};
+  const handleSaveAsNew = () => {};
 
   return (
     <ModalBase handleClose={props.handleClose}>
       <ButtonsWrapper>
         <button className='save-button'>Save as new</button>
-        <button className='update-button'>Update</button>
+        <button className='update-button' onClick={ctx.updatePalette}>
+          Update
+        </button>
       </ButtonsWrapper>
     </ModalBase>
   );
