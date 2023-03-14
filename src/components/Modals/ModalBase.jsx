@@ -13,6 +13,12 @@ const ModalOverlay = styled.div`
   animation-name: fade-in;
   animation-duration: 0.5s;
 
+  .information {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
   .modal {
     position: relative;
     display: flex;
@@ -20,7 +26,7 @@ const ModalOverlay = styled.div`
     background-color: #fff;
     padding: 2rem 2rem;
     border-radius: 15px;
-    width: 60vh;
+    width: ${props => (props.temporaryMode ? '20vw' : 'clamp(300px, 50vw, 800px)')};
   }
 
   .close-icon {
@@ -37,11 +43,13 @@ const ModalOverlay = styled.div`
 
 const ModalBase = props => {
   return (
-    <ModalOverlay>
+    <ModalOverlay temporaryMode={props.temporaryMode}>
       <div className='modal'>
-        <button className='close-icon' aria-label='Close modal'>
-          <FontAwesomeIcon icon={faCircleXmark} onClick={props.handleClose} />
-        </button>
+        {!props.temporaryMode && (
+          <button className='close-icon' aria-label='Close modal'>
+            <FontAwesomeIcon icon={faCircleXmark} onClick={props.handleClose} />
+          </button>
+        )}
         {props.children}
       </div>
     </ModalOverlay>

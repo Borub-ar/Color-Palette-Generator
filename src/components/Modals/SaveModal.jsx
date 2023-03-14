@@ -1,7 +1,8 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PaletteContext from '../../store/palette-context';
 import styled from 'styled-components';
 import ModalBase from './ModalBase';
+import { useRef } from 'react';
 
 const SaveInputWrapper = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const SaveInputWrapper = styled.div`
   }
 
   input[type='text'] {
-    border: 3px solid var(--main-blue);
+    border: 2px solid var(--main-blue);
     border-radius: 4px;
     padding: 0.7rem 0.5rem;
     font-size: 1.5rem;
@@ -25,7 +26,8 @@ const SaveInputWrapper = styled.div`
   }
 
   input[type='text']:focus-visible {
-    outline: none;
+    outline-color: transparent;
+    box-shadow: 0 0 7px 2px var(--main-blue);
   }
 
   .error-msg {
@@ -52,6 +54,12 @@ const SaveModal = props => {
   const [paletteName, setPaletteName] = useState('');
   const [showErrorMsg, setShowErrorMsg] = useState(false);
 
+  const input = useRef();
+
+  useEffect(() => {
+    input.current.focus();
+  }, []);
+
   const savePaletteName = event => {
     const name = event.target.value.trim();
     setPaletteName(name);
@@ -63,8 +71,9 @@ const SaveModal = props => {
       return;
     }
 
+    const saveAsNew = ctx.updateMode;
     setShowErrorMsg(false);
-    ctx.saveColorPalette(paletteName);
+    ctx.saveColorPalette(paletteName, saveAsNew);
     props.handleClose();
   };
 
@@ -72,7 +81,7 @@ const SaveModal = props => {
     <ModalBase handleClose={props.handleClose}>
       <SaveInputWrapper>
         <label htmlFor='name-input'>Choose palette name</label>
-        <input type='text' id='name-input' autoComplete='off' onBlur={savePaletteName} />
+        <input type='text' id='name-input' autoComplete='off' ref={input} onBlur={savePaletteName} />
         {showErrorMsg && <p className='error-msg'>Pick any name</p>}
         <button aria-label='Save palette' onClick={savePalette}>
           Save

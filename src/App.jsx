@@ -65,13 +65,21 @@ function App() {
     setUpdateMode(paletteAlreadySaved);
   };
 
-  const saveColorPalette = paletteName => {
+  const saveColorPalette = (paletteName, saveAsNew) => {
+    let id = currentPaletteId;
+    let colors = currentColors;
+
+    if (saveAsNew) {
+      id = crypto.randomUUID();
+      colors = colors.map(color => ({ ...color, id: crypto.randomUUID() }));
+    }
+
     setSavedColorPalettes(prevState => [
       ...prevState,
       {
         paletteName,
-        colors: currentColors,
-        id: currentPaletteId,
+        colors,
+        id,
       },
     ]);
   };

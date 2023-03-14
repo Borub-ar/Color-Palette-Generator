@@ -6,6 +6,7 @@ import BarQuantityController from './BarQuantityController';
 import SaveModal from '../Modals/SaveModal';
 import UpdateModal from '../Modals/UpdateModal';
 import PaletteContext from '../../store/palette-context';
+import SuccessModal from '../Modals/SuccessModal';
 
 const PanelWrapper = styled.section`
   display: flex;
@@ -30,6 +31,7 @@ const PanelWrapper = styled.section`
 const MainPanel = () => {
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const ctx = useContext(PaletteContext);
 
   const openProperModal = isAlreadySaved => {
@@ -44,6 +46,20 @@ const MainPanel = () => {
     setShowUpdateModal(false);
   };
 
+  const handleSuccessModal = () => {
+    setShowUpdateModal(false);
+    setShowSuccessModal(true);
+
+    setTimeout(() => {
+      setShowSuccessModal(false);
+    }, 1500);
+  };
+
+  const handleSaveAsNew = () => {
+    setShowUpdateModal(false);
+    setShowSaveModal(true);
+  };
+
   return (
     <PanelWrapper>
       <BarQuantityController />
@@ -54,7 +70,14 @@ const MainPanel = () => {
       </div>
 
       {showSaveModal && <SaveModal handleClose={closeSaveModal} />}
-      {showUpdateModal && <UpdateModal handleClose={closeUpdateModal} />}
+      {showUpdateModal && (
+        <UpdateModal
+          handleClose={closeUpdateModal}
+          handleUpdate={handleSuccessModal}
+          handleSaveAsNew={handleSaveAsNew}
+        />
+      )}
+      {showSuccessModal && <SuccessModal label='Palette updated'></SuccessModal>}
     </PanelWrapper>
   );
 };

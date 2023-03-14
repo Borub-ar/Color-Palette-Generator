@@ -35,13 +35,18 @@ const ButtonsWrapper = styled.div`
 const UpdateModal = props => {
   const ctx = useContext(PaletteContext);
 
-  const handleSaveAsNew = () => {};
+  const handleUpdate = () => {
+    ctx.updatePalette();
+    props.handleUpdate();
+  };
 
   return (
     <ModalBase handleClose={props.handleClose}>
       <ButtonsWrapper>
-        <button className='save-button'>Save as new</button>
-        <button className='update-button' onClick={ctx.updatePalette}>
+        <button className='save-button' onClick={props.handleSaveAsNew}>
+          Save as new
+        </button>
+        <button className='update-button' onClick={handleUpdate}>
           Update
         </button>
       </ButtonsWrapper>
