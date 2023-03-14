@@ -56,9 +56,10 @@ function App() {
 
   const handleSingleColorChange = (colorId, newColor) => {
     setCurrentColors(prevState => {
-      const colorIndex = prevState.findIndex(color => color.id === colorId);
-      prevState[colorIndex].color = newColor;
-      return prevState;
+      const newState = prevState;
+      const colorIndex = newState.findIndex(color => color.id === colorId);
+      newState[colorIndex].color = newColor;
+      return newState;
     });
 
     const paletteAlreadySaved = checkIfPaletteAlreadySaved();
@@ -71,6 +72,7 @@ function App() {
 
     if (saveAsNew) {
       id = crypto.randomUUID();
+
       colors = colors.map(color => ({ ...color, id: crypto.randomUUID() }));
     }
 

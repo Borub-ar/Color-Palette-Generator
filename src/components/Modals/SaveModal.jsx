@@ -71,8 +71,8 @@ const SaveModal = props => {
       return;
     }
 
-    const saveAsNew = ctx.updateMode;
     setShowErrorMsg(false);
+    const saveAsNew = ctx.updateMode;
     ctx.saveColorPalette(paletteName, saveAsNew);
     props.handleClose();
   };
