@@ -21,6 +21,7 @@ function App() {
   const [numberOfBars, setNumberOfBars] = useState(5);
   const [showLibrary, setShowLibrary] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
+  const [currentPaletteName, setCurrentPaletteName] = useState('');
 
   const generateRandomHexColors = () => {
     const generatedColors = [];
@@ -35,6 +36,7 @@ function App() {
     setUpdateMode(false);
     setCurrentColors(generatedColors);
     generatePaletteId();
+    setCurrentPaletteName('');
   };
 
   const generatePaletteId = () => {
@@ -69,13 +71,14 @@ function App() {
   const saveColorPalette = (paletteName, saveAsNew) => {
     let id = currentPaletteId;
     let colors = [...currentColors];
+    setCurrentPaletteName(paletteName);
 
     if (saveAsNew) {
       id = crypto.randomUUID();
       colors = colors.map(color => ({ ...color, id: crypto.randomUUID() }));
       setCurrentPaletteId(id);
       setCurrentColors(colors);
-      setUpdateMode(false)
+      setUpdateMode(false);
     }
 
     setSavedColorPalettes(prevState => [
@@ -128,7 +131,7 @@ function App() {
     <PaletteContext.Provider value={providerValues}>
       <GlobalStyle />
       <Wrapper>
-        <ColorPalette />
+        <ColorPalette paletteName={currentPaletteName} />
         <ControlPanel />
         {showLibrary && <PalettesLibrary />}
       </Wrapper>
