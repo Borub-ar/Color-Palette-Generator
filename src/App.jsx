@@ -54,6 +54,7 @@ function App() {
 
   const deleteSavedPalette = id => {
     setSavedColorPalettes(prevState => prevState.filter(item => item.id !== id));
+    if (id === currentPaletteId) setCurrentPaletteName('');
   };
 
   const handleSingleColorChange = (colorId, newColor) => {

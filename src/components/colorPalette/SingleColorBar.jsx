@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import tinycolor from 'tinycolor2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock, faSliders } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState, useRef, useContext } from 'react';
 import PaletteContext from '../../store/palette-context';
 
 const BarWrapper = styled.div`
+  --mode: ${props => (props.darkMode ? '#fff' : '#2b2b2b')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,14 +24,14 @@ const BarWrapper = styled.div`
   }
 
   p {
-    color: #fff;
+    color: var(--mode);
     font-size: 1.7rem;
     margin-bottom: 15rem;
   }
 
   button {
     background-color: transparent;
-    color: #fff;
+    color: var(--mode);
     border: none;
     margin-bottom: 3rem;
     font-size: 2rem;
@@ -41,6 +43,7 @@ const SingleColorBar = props => {
   const [color, setColor] = useState(props.color);
   const [colorChangeLocked, setColorChangeLocked] = useState(false);
   const [colorPickerIsOpen, setColorPickerIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const ctx = useContext(PaletteContext);
 
@@ -49,6 +52,10 @@ const SingleColorBar = props => {
   useEffect(() => {
     if (colorPickerIsOpen) colorPickerRef.current.click();
   }, [colorPickerIsOpen]);
+
+  useEffect(() => {
+    setDarkMode(tinycolor(color).isDark());
+  }, [color]);
 
   const handleColorChangeLock = () => {
     setColorChangeLocked(current => !current);
@@ -67,7 +74,7 @@ const SingleColorBar = props => {
   const lockIcon = colorChangeLocked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />;
 
   return (
-    <BarWrapper color={color}>
+    <BarWrapper color={color} darkMode={darkMode}>
       <p>{color}</p>
       <button aria-label='Open color picker' onClick={handleColorPickerVisibility}>
         <FontAwesomeIcon icon={faSliders} />

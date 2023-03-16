@@ -39,6 +39,9 @@ const PaletteWrapper = styled.section`
   .edit-icon {
     color: var(--main-blue);
     margin-left: 0.4rem;
+    border: none;
+    background-color: transparent;
+    font-size: 1.4rem;
     cursor: pointer;
   }
 `;
@@ -58,7 +61,10 @@ const ColorsPalette = props => {
   return (
     <PaletteWrapper>
       <p className={`palette-name ${paletteName && paletteName !== '' ? 'show' : ''}`}>
-        {paletteName} <FontAwesomeIcon className='edit-icon' icon={faPenToSquare} />
+        {paletteName}{' '}
+        <button className='edit-icon' aria-label='Change palette name'>
+          <FontAwesomeIcon icon={faPenToSquare} />
+        </button>
       </p>
       {colorBars}
     </PaletteWrapper>
