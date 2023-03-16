@@ -6,7 +6,7 @@ import { useEffect, useState, useRef, useContext } from 'react';
 import PaletteContext from '../../store/palette-context';
 
 const BarWrapper = styled.div`
-  --mode: ${props => (props.darkMode ? '#fff' : '#2b2b2b')};
+  --colorMode: ${props => (props.darkMode ? '#fff' : '#202020')};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,14 +24,14 @@ const BarWrapper = styled.div`
   }
 
   p {
-    color: var(--mode);
+    color: var(--colorMode);
     font-size: 1.7rem;
     margin-bottom: 15rem;
   }
 
   button {
     background-color: transparent;
-    color: var(--mode);
+    color: var(--colorMode);
     border: none;
     margin-bottom: 3rem;
     font-size: 2rem;

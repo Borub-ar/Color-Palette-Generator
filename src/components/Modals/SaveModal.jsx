@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import PaletteContext from '../../store/palette-context';
+import { useContext, useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+
+import PaletteContext from '../../store/palette-context';
 import ModalBase from './ModalBase';
-import { useRef } from 'react';
 
 const SaveInputWrapper = styled.div`
   display: flex;

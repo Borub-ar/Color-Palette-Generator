@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import PaletteContext from '../../store/palette-context';
@@ -9,6 +9,8 @@ const LibraryList = styled.div`
   .list-wrapper {
     display: flex;
     flex-direction: column;
+    align-items: ${props => (props.isEmpty ? 'center ' : 'stretch')};
+    justify-content: ${props => (props.isEmpty ? 'center ' : 'flex-start')};
     row-gap: 1rem;
     height: 20rem;
     padding: 1.3rem 0.5rem;
@@ -32,28 +34,31 @@ const LibraryList = styled.div`
     text-align: center;
     font-weight: 700;
     font-size: 1.7rem;
-    margin-top: 5rem;
     color: var(--default-dark);
   }
 `;
 
 const PalettesLibrary = () => {
   const ctx = useContext(PaletteContext);
+  const [isEmpty, setIsEmpty] = useState(true);
+
+  useEffect(() => {
+    setIsEmpty(ctx.savedColorPalettes.length === 0);
+  }, [ctx.savedColorPalettes]);
 
   const closeModal = () => {
     ctx.handleLibraryVisibility();
   };
 
-  const savedPalettes =
-    ctx.savedColorPalettes.length === 0 ? (
-      <p className='empty-library-msg'>No palettes saved</p>
-    ) : (
-      ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />)
-    );
+  const savedPalettes = isEmpty ? (
+    <p className='empty-library-msg'>No palettes saved</p>
+  ) : (
+    ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />)
+  );
 
   return (
     <ModalBase handleClose={closeModal}>
-      <LibraryList>
+      <LibraryList isEmpty={isEmpty}>
         <div className='list-wrapper'>{savedPalettes}</div>
       </LibraryList>
     </ModalBase>

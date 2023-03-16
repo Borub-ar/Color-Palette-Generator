@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { useState } from 'react';
+import styled from 'styled-components';
+
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
 import ColorPalette from './components/ColorPalette/ColorsPalette';

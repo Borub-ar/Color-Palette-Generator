@@ -1,7 +1,8 @@
 import { useContext, useEffect } from 'react';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+
 import PaletteContext from '../../store/palette-context';
 import SingleColorBar from './SingleColorBar';
 
