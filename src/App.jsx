@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
-import ColorPalette from './components/colorPalette/ColorPalette';
+import ColorPalette from './components/ColorPalette/ColorsPalette';
 import ControlPanel from './components/controlPanel/ControlPanel';
 import PalettesLibrary from './components/palettesLibrary/PalettesLibrary';
 
@@ -68,12 +68,14 @@ function App() {
 
   const saveColorPalette = (paletteName, saveAsNew) => {
     let id = currentPaletteId;
-    let colors = currentColors;
+    let colors = [...currentColors];
 
     if (saveAsNew) {
       id = crypto.randomUUID();
-
       colors = colors.map(color => ({ ...color, id: crypto.randomUUID() }));
+      setCurrentPaletteId(id);
+      setCurrentColors(colors);
+      setUpdateMode(false)
     }
 
     setSavedColorPalettes(prevState => [
