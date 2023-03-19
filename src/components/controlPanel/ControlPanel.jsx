@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+
 import ControlPanelButton from '../buttons/ControlPanelButton';
 import BarQuantityController from './BarQuantityController';
 import SaveModal from '../Modals/SaveModal';

@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { useState, useContext } from 'react';
+import styled from 'styled-components';
+
 import PaletteContext from '../../store/palette-context';
 
 const InputWrapper = styled.div`

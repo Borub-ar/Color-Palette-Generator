@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+import { useState } from 'react';
 
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
@@ -84,12 +84,12 @@ function App() {
     }
 
     setSavedColorPalettes(prevState => [
-      ...prevState,
       {
         paletteName,
         colors,
         id,
       },
+      ...prevState,
     ]);
   };
 
@@ -112,6 +112,14 @@ function App() {
     setUpdateMode(state);
   };
 
+  const loadSavedPalette = id => {
+    const paletteData = savedColorPalettes.filter(el => el.id === id);
+    setCurrentPaletteId(id);
+    setShowLibrary(false);
+    setCurrentPaletteName(paletteData[0].paletteName);
+    setCurrentColors(paletteData[0].colors);
+  };
+
   const providerValues = {
     currentColors,
     setCurrentColors,
@@ -127,6 +135,7 @@ function App() {
     updateMode,
     updatePalette,
     changeUpdateMode,
+    loadSavedPalette,
   };
 
   return (

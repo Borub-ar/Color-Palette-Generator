@@ -1,10 +1,11 @@
+import { useContext, useState, useRef, useEffect } from 'react';
 import styled, { css, keyframes } from 'styled-components';
-import Color from './Color';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
-import { useContext, useState, useRef, useEffect } from 'react';
-import PaletteContext from '../../store/palette-context';
 import '@fortawesome/fontawesome-free/css/all.css';
+
+import Color from './Color';
+import PaletteContext from '../../store/palette-context';
 
 const moveLeftButton = keyframes`
   0% {
@@ -129,7 +130,7 @@ const LibraryTile = props => {
   const deleteButtonRef = useRef();
   const tileRef = useRef();
 
-  const colors = props.paletteData.colors;
+  const { colors, id: paletteId, paletteName } = props.paletteData;
 
   useEffect(() => {
     const handleDeleteButtonAnimationEnd = event => {
@@ -138,7 +139,7 @@ const LibraryTile = props => {
     };
 
     const handleTileAnimationEnd = () => {
-      ctx.deleteSavedPalette(props.paletteData.id);
+      ctx.deleteSavedPalette(paletteId);
     };
 
     const deleteButton = deleteButtonRef.current;
@@ -157,9 +158,13 @@ const LibraryTile = props => {
     setButtonAnimation(true);
   };
 
+  const loadSavedPalette = () => {
+    ctx.loadSavedPalette(paletteId);
+  }
+
   return (
     <Tile ref={tileRef} animateButton={buttonAnimation} animateTile={tileAnimation}>
-      <p className='name'>{props.paletteData.paletteName}</p>
+      <p className='name'>{paletteName}</p>
 
       <div className='palette-colors'>
         {colors.map(color => (
@@ -173,7 +178,7 @@ const LibraryTile = props => {
           onClick={startDeleteAnimations}
           className='delete-button'
           aria-label='Delete palette'></button>
-        <button className='modify-button' aria-label='Modify palette'>
+        <button onClick={loadSavedPalette} className='modify-button' aria-label='Modify palette'>
           <FontAwesomeIcon icon={faPaintBrush} />
         </button>
       </div>

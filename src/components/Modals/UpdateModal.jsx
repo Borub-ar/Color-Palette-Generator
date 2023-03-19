@@ -1,6 +1,7 @@
-import ModalBase from './ModalBase';
-import styled from 'styled-components';
 import { useContext } from 'react';
+import styled from 'styled-components';
+
+import ModalBase from './ModalBase';
 import PaletteContext from '../../store/palette-context';
 
 const ButtonsWrapper = styled.div`

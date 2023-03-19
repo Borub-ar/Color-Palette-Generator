@@ -1,8 +1,9 @@
+import { useEffect, useState, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock, faSliders } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState, useRef, useContext } from 'react';
+
 import PaletteContext from '../../store/palette-context';
 
 const BarWrapper = styled.div`
