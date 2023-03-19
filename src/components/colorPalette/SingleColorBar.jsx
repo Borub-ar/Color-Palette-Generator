@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLockOpen, faLock, faSliders } from '@fortawesome/free-solid-svg-icons';
 
 import PaletteContext from '../../store/palette-context';
+import useDebounce from '../../hooks/useDebounce';
 
 const BarWrapper = styled.div`
   --colorMode: ${props => (props.darkMode ? '#fff' : '#202020')};
@@ -45,10 +46,18 @@ const SingleColorBar = props => {
   const [colorChangeLocked, setColorChangeLocked] = useState(false);
   const [colorPickerIsOpen, setColorPickerIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [displayedColor, setDisplayedColor] = useState();
 
   const ctx = useContext(PaletteContext);
 
   const colorPickerRef = useRef(null);
+  const debouncedColor = useDebounce(color, 200);
+
+  useEffect(() => {
+    setDisplayedColor(debouncedColor);
+    ctx.handleSingleColorChange(props.colorId, debouncedColor);
+    setDarkMode(tinycolor(color).isDark());
+  }, [debouncedColor]);
 
   useEffect(() => {
     if (colorPickerIsOpen) colorPickerRef.current.click();
@@ -56,7 +65,7 @@ const SingleColorBar = props => {
 
   useEffect(() => {
     setDarkMode(tinycolor(color).isDark());
-  }, [color]);
+  }, []);
 
   const handleColorChangeLock = () => {
     setColorChangeLocked(current => !current);
@@ -67,16 +76,15 @@ const SingleColorBar = props => {
   };
 
   const handleColorChange = event => {
-    const newColor = event.target.value;
+    const newColor = event.target.value.toUpperCase();
     setColor(newColor);
-    ctx.handleSingleColorChange(props.colorId, newColor);
   };
 
   const lockIcon = colorChangeLocked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />;
 
   return (
-    <BarWrapper color={color} darkMode={darkMode}>
-      <p>{color}</p>
+    <BarWrapper color={displayedColor ? displayedColor : color} darkMode={darkMode}>
+      <p>{displayedColor ? displayedColor : color}</p>
       <button aria-label='Open color picker' onClick={handleColorPickerVisibility}>
         <FontAwesomeIcon icon={faSliders} />
         <label className='hidden' htmlFor='color-picker'>
