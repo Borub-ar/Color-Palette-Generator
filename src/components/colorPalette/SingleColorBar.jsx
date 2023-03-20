@@ -51,7 +51,7 @@ const SingleColorBar = props => {
   const ctx = useContext(PaletteContext);
 
   const colorPickerRef = useRef(null);
-  const debouncedColor = useDebounce(color, 200);
+  const debouncedColor = useDebounce(color, 500);
 
   useEffect(() => {
     setDisplayedColor(debouncedColor);
