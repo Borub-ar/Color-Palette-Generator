@@ -60,7 +60,7 @@ function App() {
 
   const handleSingleColorChange = (colorId, newColor) => {
     setCurrentColors(prevState => {
-      const newState = prevState;
+      const newState = [...prevState];
       const colorIndex = newState.findIndex(color => color.id === colorId);
       newState[colorIndex].color = newColor;
       return newState;
@@ -72,7 +72,7 @@ function App() {
 
   const saveColorPalette = (paletteName, saveAsNew) => {
     let id = currentPaletteId;
-    let colors = [...currentColors];
+    let colors = JSON.parse(JSON.stringify(currentColors));
     setCurrentPaletteName(paletteName);
 
     if (saveAsNew) {
