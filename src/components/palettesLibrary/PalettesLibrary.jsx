@@ -39,21 +39,21 @@ const LibraryList = styled.div`
 `;
 
 const PalettesLibrary = () => {
-  const ctx = useContext(PaletteContext);
+  const { savedColorPalettes, handleLibraryVisibility } = useContext(PaletteContext);
   const [isEmpty, setIsEmpty] = useState(true);
 
   useEffect(() => {
-    setIsEmpty(ctx.savedColorPalettes.length === 0);
-  }, [ctx.savedColorPalettes]);
+    setIsEmpty(savedColorPalettes.length === 0);
+  }, [savedColorPalettes]);
 
   const closeModal = () => {
-    ctx.handleLibraryVisibility();
+    handleLibraryVisibility();
   };
 
   const savedPalettes = isEmpty ? (
     <p className='empty-library-msg'>No palettes saved</p>
   ) : (
-    ctx.savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />)
+    savedColorPalettes.map(palette => <LibraryTile key={palette.id} paletteData={palette} />)
   );
 
   return (

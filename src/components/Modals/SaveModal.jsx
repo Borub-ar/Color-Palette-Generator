@@ -50,7 +50,7 @@ const SaveInputWrapper = styled.div`
 `;
 
 const SaveModal = props => {
-  const ctx = useContext(PaletteContext);
+  const { updateMode, saveColorPalette } = useContext(PaletteContext);
   const [paletteName, setPaletteName] = useState('');
   const [showErrorMsg, setShowErrorMsg] = useState(false);
 
@@ -72,8 +72,8 @@ const SaveModal = props => {
     }
 
     setShowErrorMsg(false);
-    const saveAsNew = ctx.updateMode;
-    ctx.saveColorPalette(paletteName, saveAsNew);
+    const saveAsNew = updateMode;
+    saveColorPalette(paletteName, saveAsNew);
     props.handleClose();
   };
 

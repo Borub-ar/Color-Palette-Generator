@@ -33,10 +33,10 @@ const MainPanel = () => {
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
-  const ctx = useContext(PaletteContext);
+  const { updateMode } = useContext(PaletteContext);
 
   const openProperModal = isAlreadySaved => {
-    ctx.updateMode && isAlreadySaved ? setShowUpdateModal(true) : setShowSaveModal(true);
+    updateMode && isAlreadySaved ? setShowUpdateModal(true) : setShowSaveModal(true);
   };
 
   const closeSaveModal = () => {

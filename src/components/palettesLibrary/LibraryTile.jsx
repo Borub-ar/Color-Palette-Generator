@@ -124,8 +124,7 @@ const Tile = styled.div`
 const LibraryTile = props => {
   const [buttonAnimation, setButtonAnimation] = useState(false);
   const [tileAnimation, setTileAnimation] = useState(false);
-
-  const ctx = useContext(PaletteContext);
+  const { deleteSavedPalette, loadSavedPalette } = useContext(PaletteContext);
 
   const deleteButtonRef = useRef();
   const tileRef = useRef();
@@ -139,7 +138,7 @@ const LibraryTile = props => {
     };
 
     const handleTileAnimationEnd = () => {
-      ctx.deleteSavedPalette(paletteId);
+      deleteSavedPalette(paletteId);
     };
 
     const deleteButton = deleteButtonRef.current;
@@ -158,9 +157,9 @@ const LibraryTile = props => {
     setButtonAnimation(true);
   };
 
-  const loadSavedPalette = () => {
-    ctx.loadSavedPalette(paletteId);
-  }
+  const loadPalette = () => {
+    loadSavedPalette(paletteId);
+  };
 
   return (
     <Tile ref={tileRef} animateButton={buttonAnimation} animateTile={tileAnimation}>
@@ -178,7 +177,7 @@ const LibraryTile = props => {
           onClick={startDeleteAnimations}
           className='delete-button'
           aria-label='Delete palette'></button>
-        <button onClick={loadSavedPalette} className='modify-button' aria-label='Modify palette'>
+        <button onClick={loadPalette} className='modify-button' aria-label='Modify palette'>
           <FontAwesomeIcon icon={faPaintBrush} />
         </button>
       </div>

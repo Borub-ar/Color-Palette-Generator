@@ -48,14 +48,14 @@ const SingleColorBar = props => {
   const [darkMode, setDarkMode] = useState(false);
   const [displayedColor, setDisplayedColor] = useState();
 
-  const ctx = useContext(PaletteContext);
+  const { handleSingleColorChange } = useContext(PaletteContext);
 
   const colorPickerRef = useRef(null);
   const debouncedColor = useDebounce(color, 500);
 
   useEffect(() => {
     setDisplayedColor(debouncedColor);
-    ctx.handleSingleColorChange(props.colorId, debouncedColor);
+    handleSingleColorChange(props.colorId, debouncedColor);
     setDarkMode(tinycolor(color).isDark());
   }, [debouncedColor]);
 

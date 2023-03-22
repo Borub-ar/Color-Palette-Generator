@@ -52,20 +52,21 @@ const ButtonWrapper = styled.div`
 
 const ControlPanelButton = props => {
   const [showAlreadySavedMsg, setShowAlreadySavedMsg] = useState();
-  const ctx = useContext(PaletteContext);
+  const { changeUpdateMode, updateMode, checkIfPaletteAlreadySaved, generateRandomHexColors, handleLibraryVisibility } =
+    useContext(PaletteContext);
 
   const handleClick = () => {
     if (props.saveMode) handleSave();
-    if (props.generateMode) ctx.generateRandomHexColors();
-    if (props.libraryMode) ctx.handleLibraryVisibility();
+    if (props.generateMode) generateRandomHexColors();
+    if (props.libraryMode) handleLibraryVisibility();
   };
 
   const handleSave = () => {
-    const isAlreadySaved = ctx.checkIfPaletteAlreadySaved();
+    const isAlreadySaved = checkIfPaletteAlreadySaved();
 
-    if (!isAlreadySaved) ctx.changeUpdateMode(false);
-    if (!isAlreadySaved || ctx.updateMode) props.openProperModal(isAlreadySaved);
-    if (isAlreadySaved && !ctx.updateMode) {
+    if (!isAlreadySaved) changeUpdateMode(false);
+    if (!isAlreadySaved || updateMode) props.openProperModal(isAlreadySaved);
+    if (isAlreadySaved && !updateMode) {
       setShowAlreadySavedMsg(true);
 
       setTimeout(() => {

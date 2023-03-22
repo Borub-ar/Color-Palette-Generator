@@ -110,19 +110,26 @@ const InputWrapper = styled.div`
 
 const BarQuantityController = () => {
   const [barsQuantity, setBarsQuantity] = useState(5);
-
-  const ctx = useContext(PaletteContext);
+  const { updateColorBarsQuantity } = useContext(PaletteContext);
 
   const handleQuantityChange = event => {
     const numberOfBars = event.target.value;
-    ctx.updateColorBarsQuantity(numberOfBars);
+    updateColorBarsQuantity(numberOfBars);
     setBarsQuantity(numberOfBars);
   };
 
   return (
     <InputWrapper>
       <label htmlFor='bar-quantity'>Color Bars</label>
-      <input type='range' id='bar-quantity' step='1' min='2' max='9' defaultValue={barsQuantity} onChange={handleQuantityChange} />
+      <input
+        type='range'
+        id='bar-quantity'
+        step='1'
+        min='2'
+        max='9'
+        defaultValue={barsQuantity}
+        onChange={handleQuantityChange}
+      />
       <p>{barsQuantity}</p>
     </InputWrapper>
   );

@@ -71,18 +71,14 @@ function App() {
   };
 
   const saveColorPalette = (paletteName, saveAsNew) => {
-    let id = currentPaletteId;
-    let colors = JSON.parse(JSON.stringify(currentColors));
+    if (saveAsNew) setUpdateMode(false);
+
+    const id = saveAsNew ? crypto.randomUUID() : currentPaletteId;
+    const colors = saveAsNew
+      ? JSON.parse(JSON.stringify(currentColors.map(color => ({ ...color, id: crypto.randomUUID() }))))
+      : JSON.parse(JSON.stringify(currentColors));
+
     setCurrentPaletteName(paletteName);
-
-    if (saveAsNew) {
-      id = crypto.randomUUID();
-      colors = colors.map(color => ({ ...color, id: crypto.randomUUID() }));
-      setCurrentPaletteId(id);
-      setCurrentColors(colors);
-      setUpdateMode(false);
-    }
-
     setSavedColorPalettes(prevState => [
       {
         paletteName,
@@ -113,11 +109,14 @@ function App() {
   };
 
   const loadSavedPalette = id => {
-    const paletteData = savedColorPalettes.filter(el => el.id === id);
+    const paletteData = JSON.parse(JSON.stringify(savedColorPalettes.filter(el => el.id === id)));
     setCurrentPaletteId(id);
-    setShowLibrary(false);
     setCurrentPaletteName(paletteData[0].paletteName);
     setCurrentColors(paletteData[0].colors);
+    setShowLibrary(false);
+    setUpdateMode(false);
+
+    console.log(providerValues);
   };
 
   const providerValues = {

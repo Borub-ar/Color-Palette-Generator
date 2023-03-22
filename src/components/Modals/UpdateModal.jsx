@@ -34,10 +34,10 @@ const ButtonsWrapper = styled.div`
 `;
 
 const UpdateModal = props => {
-  const ctx = useContext(PaletteContext);
+  const { updatePalette } = useContext(PaletteContext);
 
   const handleUpdate = () => {
-    ctx.updatePalette();
+    updatePalette();
     props.handleUpdate();
   };
 

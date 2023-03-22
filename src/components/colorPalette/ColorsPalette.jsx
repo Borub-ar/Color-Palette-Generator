@@ -48,14 +48,14 @@ const PaletteWrapper = styled.section`
 `;
 
 const ColorsPalette = props => {
-  const ctx = useContext(PaletteContext);
+  const { generateRandomHexColors, currentColors } = useContext(PaletteContext);
   const { paletteName } = props;
 
   useEffect(() => {
-    ctx.generateRandomHexColors();
+    generateRandomHexColors();
   }, []);
 
-  const colorBars = ctx.currentColors.map(hexColor => (
+  const colorBars = currentColors.map(hexColor => (
     <SingleColorBar key={hexColor.id} color={hexColor.color} colorId={hexColor.id} />
   ));
 
