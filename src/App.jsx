@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import uuid4 from "uuid4";
 
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
@@ -32,7 +33,7 @@ function App() {
       for (let i = 0; i < 6; i++) {
         hex += letters[Math.floor(Math.random() * 16)];
       }
-      generatedColors.push({ color: hex, id: crypto.randomUUID() });
+      generatedColors.push({ color: hex, id: uuid4() });
     }
     setUpdateMode(false);
     setCurrentColors(generatedColors);
@@ -41,7 +42,7 @@ function App() {
   };
 
   const generatePaletteId = () => {
-    const randomId = crypto.randomUUID();
+    const randomId = uuid4();
     setCurrentPaletteId(randomId);
   };
 
@@ -73,9 +74,9 @@ function App() {
   const saveColorPalette = (paletteName, saveAsNew) => {
     if (saveAsNew) setUpdateMode(false);
 
-    const id = saveAsNew ? crypto.randomUUID() : currentPaletteId;
+    const id = saveAsNew ? uuid4() : currentPaletteId;
     const colors = saveAsNew
-      ? JSON.parse(JSON.stringify(currentColors.map(color => ({ ...color, id: crypto.randomUUID() }))))
+      ? JSON.parse(JSON.stringify(currentColors.map(color => ({ ...color, id: uuid4() }))))
       : JSON.parse(JSON.stringify(currentColors));
 
     setCurrentPaletteName(paletteName);

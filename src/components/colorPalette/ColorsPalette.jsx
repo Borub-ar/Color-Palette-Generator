@@ -61,7 +61,7 @@ const ColorsPalette = props => {
 
   return (
     <PaletteWrapper>
-      <p className={`palette-name ${paletteName && paletteName !== '' ? 'show' : ''}`}>
+      <p data-testid='aaa' className={`palette-name ${paletteName && paletteName !== '' ? 'show' : ''}`}>
         {paletteName}{' '}
         <button className='edit-icon' aria-label='Change palette name'>
           <FontAwesomeIcon icon={faPenToSquare} />
