@@ -115,8 +115,6 @@ function App() {
     setCurrentColors(paletteData[0].colors);
     setShowLibrary(false);
     setUpdateMode(false);
-
-    console.log(providerValues);
   };
 
   const providerValues = {
