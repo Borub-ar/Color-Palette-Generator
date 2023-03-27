@@ -81,7 +81,14 @@ const SaveModal = props => {
     <ModalBase handleClose={props.handleClose}>
       <SaveInputWrapper>
         <label htmlFor='name-input'>Choose palette name</label>
-        <input type='text' id='name-input' autoComplete='off' ref={input} onBlur={savePaletteName} />
+        <input
+          data-testid='input'
+          type='text'
+          id='name-input'
+          autoComplete='off'
+          ref={input}
+          onBlur={savePaletteName}
+        />
         {showErrorMsg && <p className='error-msg'>Pick any name</p>}
         <button aria-label='Save palette' onClick={savePalette}>
           Save
