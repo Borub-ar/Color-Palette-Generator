@@ -43,7 +43,7 @@ const ModalOverlay = styled.div`
 
 const ModalBase = props => {
   return (
-    <ModalOverlay temporaryMode={props.temporaryMode}>
+    <ModalOverlay data-testid="modal-overlay" temporaryMode={props.temporaryMode}>
       <div className='modal'>
         {!props.temporaryMode && (
           <button className='close-icon' onClick={props.handleClose} aria-label='Close modal'>

@@ -43,28 +43,31 @@ describe('SaveModal', () => {
     expect(errorMsgElement).toBeInTheDocument();
   });
 
-  // test('does not call saveColorPalette or handleClose when palette name input is empty', () => {
-  //   const saveButtonElement = screen.getByLabelText(/Save palette/i);
-  //   fireEvent.click(saveButtonElement);
-  //   expect(saveColorPaletteMock).not.toHaveBeenCalled();
-  //   expect(handleCloseMock).not.toHaveBeenCalled();
-  // });
+  test('does not call saveColorPalette or handleClose when palette name input is empty', () => {
+    const saveButtonElement = screen.getByLabelText(/Save palette/i);
+    fireEvent.click(saveButtonElement);
+    expect(saveColorPaletteMock).not.toHaveBeenCalled();
+    expect(handleCloseMock).not.toHaveBeenCalled();
+  });
 
-  // test('does not call saveColorPalette or handleClose when spaces are typed in palette name input', () => {
-  //   const inputElement = screen.getByLabelText(/Choose palette name/i);
-  //   fireEvent.change(inputElement, { target: { value: '    ' } });
-  //   const saveButtonElement = screen.getByLabelText(/Save palette/i);
-  //   fireEvent.click(saveButtonElement);
-  //   expect(saveColorPaletteMock).not.toHaveBeenCalled();
-  //   expect(handleCloseMock).not.toHaveBeenCalled();
-  // });
+  test('does not call saveColorPalette or handleClose when spaces are typed in palette name input', () => {
+    const inputElement = screen.getByLabelText(/Choose palette name/i);
+    fireEvent.change(inputElement, { target: { value: '    ' } });
+    fireEvent.blur(inputElement);
+    const saveButtonElement = screen.getByLabelText(/Save palette/i);
+    fireEvent.click(saveButtonElement);
+    expect(saveColorPaletteMock).not.toHaveBeenCalled();
+    expect(handleCloseMock).not.toHaveBeenCalled();
+  });
 
-  // test('calls saveColorPalette and handleClose when palette name is not empty', () => {
-  //   const inputElement = screen.getByLabelText(/Choose palette name/i);
-  //   fireEvent.change(inputElement, { target: { value: 'Test' } });
-  //   const saveButtonElement = screen.getByLabelText(/Save palette/i);
-  //   fireEvent.click(saveButtonElement);
-  //   // expect(saveColorPaletteMock).toHaveBeenCalledTimes(1);
-  //   expect(handleCloseMock).toHaveBeenCalledTimes(1);
-  // });
+  test('calls saveColorPalette and handleClose when palette name is not empty', () => {
+    const inputElement = screen.getByLabelText(/Choose palette name/i);
+    const testPaletteName = 'Test';
+    fireEvent.change(inputElement, { target: { value: testPaletteName } });
+    fireEvent.blur(inputElement);
+    const saveButtonElement = screen.getByLabelText(/Save palette/i);
+    fireEvent.click(saveButtonElement);
+    expect(saveColorPaletteMock).toHaveBeenCalledWith(testPaletteName, updateModeMock);
+    expect(handleCloseMock).toHaveBeenCalledTimes(1);
+  });
 });

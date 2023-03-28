@@ -66,13 +66,12 @@ const SaveModal = props => {
   };
 
   const savePalette = () => {
-    if (paletteName.trim() === '') {
+    if (paletteName.length === 0) {
       setShowErrorMsg(true);
       return;
     }
 
     setShowErrorMsg(false);
-    console.log('dsadsa');
     const saveAsNew = updateMode;
     saveColorPalette(paletteName, saveAsNew);
     props.handleClose();
