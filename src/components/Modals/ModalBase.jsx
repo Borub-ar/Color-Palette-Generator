@@ -46,8 +46,8 @@ const ModalBase = props => {
     <ModalOverlay temporaryMode={props.temporaryMode}>
       <div className='modal'>
         {!props.temporaryMode && (
-          <button className='close-icon' aria-label='Close modal'>
-            <FontAwesomeIcon icon={faCircleXmark} onClick={props.handleClose} />
+          <button className='close-icon' onClick={props.handleClose} aria-label='Close modal'>
+            <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         )}
         {props.children}

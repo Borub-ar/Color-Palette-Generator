@@ -66,12 +66,13 @@ const SaveModal = props => {
   };
 
   const savePalette = () => {
-    if (paletteName === '') {
+    if (paletteName.trim() === '') {
       setShowErrorMsg(true);
       return;
     }
 
     setShowErrorMsg(false);
+    console.log('dsadsa');
     const saveAsNew = updateMode;
     saveColorPalette(paletteName, saveAsNew);
     props.handleClose();
@@ -81,16 +82,9 @@ const SaveModal = props => {
     <ModalBase handleClose={props.handleClose}>
       <SaveInputWrapper>
         <label htmlFor='name-input'>Choose palette name</label>
-        <input
-          data-testid='input'
-          type='text'
-          id='name-input'
-          autoComplete='off'
-          ref={input}
-          onBlur={savePaletteName}
-        />
+        <input type='text' id='name-input' autoComplete='off' ref={input} onBlur={savePaletteName} />
         {showErrorMsg && <p className='error-msg'>Pick any name</p>}
-        <button aria-label='Save palette' onClick={savePalette}>
+        <button onClick={savePalette} aria-label='Save palette'>
           Save
         </button>
       </SaveInputWrapper>

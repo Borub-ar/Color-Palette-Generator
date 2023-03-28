@@ -2,8 +2,8 @@ import ModalBase from './ModalBase';
 
 const SuccessModal = props => {
   return (
-    <ModalBase temporaryMode>
-      <p className='information'>{props.label}</p>
+    <ModalBase data-testid="modal-base" temporaryMode>
+      <p>{props.label}</p>
     </ModalBase>
   );
 };
