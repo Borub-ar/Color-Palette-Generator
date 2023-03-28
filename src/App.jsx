@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import uuid4 from "uuid4";
+import uuid4 from 'uuid4';
+import lodash from 'lodash';
 
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
@@ -61,7 +62,7 @@ function App() {
 
   const handleSingleColorChange = (colorId, newColor) => {
     setCurrentColors(prevState => {
-      const newState = [...prevState];
+      const newState = lodash.cloneDeep(prevState);
       const colorIndex = newState.findIndex(color => color.id === colorId);
       newState[colorIndex].color = newColor;
       return newState;
@@ -76,9 +77,10 @@ function App() {
 
     const id = saveAsNew ? uuid4() : currentPaletteId;
     const colors = saveAsNew
-      ? JSON.parse(JSON.stringify(currentColors.map(color => ({ ...color, id: uuid4() }))))
-      : JSON.parse(JSON.stringify(currentColors));
+      ? lodash.cloneDeep(currentColors.map(color => ({ ...color, id: uuid4() })))
+      : lodash.cloneDeep(currentColors);
 
+    setCurrentPaletteId(id);
     setCurrentPaletteName(paletteName);
     setSavedColorPalettes(prevState => [
       {
@@ -88,10 +90,6 @@ function App() {
       },
       ...prevState,
     ]);
-  };
-
-  const handleLibraryVisibility = () => {
-    setShowLibrary(prevState => !prevState);
   };
 
   const updatePalette = () => {
@@ -105,12 +103,16 @@ function App() {
     setUpdateMode(false);
   };
 
+  const handleLibraryVisibility = () => {
+    setShowLibrary(prevState => !prevState);
+  };
+
   const changeUpdateMode = state => {
     setUpdateMode(state);
   };
 
   const loadSavedPalette = id => {
-    const paletteData = JSON.parse(JSON.stringify(savedColorPalettes.filter(el => el.id === id)));
+    const paletteData = lodash.cloneDeep(savedColorPalettes.filter(el => el.id === id));
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteData[0].paletteName);
     setCurrentColors(paletteData[0].colors);

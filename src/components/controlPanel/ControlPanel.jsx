@@ -74,7 +74,7 @@ const MainPanel = () => {
       {showUpdateModal && (
         <UpdateModal
           handleClose={closeUpdateModal}
-          handleUpdate={handleSuccessModal}
+          showSuccessModal={handleSuccessModal}
           handleSaveAsNew={handleSaveAsNew}
         />
       )}

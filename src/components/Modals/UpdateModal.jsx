@@ -38,7 +38,7 @@ const UpdateModal = props => {
 
   const handleUpdate = () => {
     updatePalette();
-    props.handleUpdate();
+    props.showSuccessModal();
   };
 
   return (
