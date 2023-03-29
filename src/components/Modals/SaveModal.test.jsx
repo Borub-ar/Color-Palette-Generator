@@ -8,11 +8,11 @@ describe('SaveModal', () => {
   const handleCloseMock = vi.fn();
   const saveColorPaletteMock = vi.fn();
   const updateModeMock = false;
-  const mockedContext = { updateMode: updateModeMock, saveColorPalette: saveColorPaletteMock };
+  const contextMock = { updateMode: updateModeMock, saveColorPalette: saveColorPaletteMock };
 
   beforeEach(() => {
     render(
-      <PaletteContext.Provider value={mockedContext}>
+      <PaletteContext.Provider value={contextMock}>
         <SaveModal handleClose={handleCloseMock} />
       </PaletteContext.Provider>
     );

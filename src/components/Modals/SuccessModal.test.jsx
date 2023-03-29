@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test } from 'vitest';
+
 import SuccessModal from './SuccessModal';
 
 describe('SuccessModal', () => {
