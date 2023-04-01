@@ -9,5 +9,5 @@ describe('SuccessModal', () => {
     render(<SuccessModal label={label} />);
     const messageElement = screen.getByText(label);
     expect(messageElement).toBeInTheDocument();
-  });
+  }); 
 });
