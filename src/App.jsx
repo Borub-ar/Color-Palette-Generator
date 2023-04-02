@@ -20,13 +20,14 @@ const Wrapper = styled.main`
 function App() {
   const [currentPaletteId, setCurrentPaletteId] = useState('');
   const [currentColors, setCurrentColors] = useState([]);
+  const [currentPaletteName, setCurrentPaletteName] = useState('');
   const [savedColorPalettes, setSavedColorPalettes] = useState([]);
+
   const [numberOfBars, setNumberOfBars] = useState(5);
   const [showLibrary, setShowLibrary] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
-  const [currentPaletteName, setCurrentPaletteName] = useState('');
 
-  const generateRandomHexColors = () => {
+  const generateRandomHexColors = initialRender => {
     const generatedColors = [];
     for (let i = numberOfBars; i > 0; i--) {
       let hex = '#';
@@ -34,11 +35,13 @@ function App() {
       for (let i = 0; i < 6; i++) {
         hex += letters[Math.floor(Math.random() * 16)];
       }
-      generatedColors.push({ color: hex, id: uuid4() });
+      const color = { color: hex, id: uuid4() };
+      if (initialRender) color.isLocked = false;
+      generatedColors.push(color);
     }
+    generatePaletteId();
     setUpdateMode(false);
     setCurrentColors(generatedColors);
-    generatePaletteId();
     setCurrentPaletteName('');
   };
 
@@ -119,9 +122,12 @@ function App() {
     setShowLibrary(false);
   };
 
+  const markColorAsLocked = colorId => {
+    // console.log('dsadas')
+  };
+
   const providerValues = {
     currentColors,
-    setCurrentColors,
     numberOfBars,
     updateColorBarsQuantity,
     generateRandomHexColors,
@@ -135,6 +141,7 @@ function App() {
     updatePalette,
     changeUpdateMode,
     loadSavedPalette,
+    markColorAsLocked,
   };
 
   return (

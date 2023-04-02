@@ -52,7 +52,7 @@ const ColorsPalette = props => {
   const { paletteName } = props;
 
   useEffect(() => {
-    generateRandomHexColors();
+    generateRandomHexColors(true);
   }, []);
 
   const colorBars = currentColors.map(hexColor => (
