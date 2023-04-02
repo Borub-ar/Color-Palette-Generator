@@ -64,9 +64,14 @@ const Color = props => {
       color={props.color}
       onMouseEnter={handleColorInfoVisibility}
       onMouseLeave={handleColorInfoVisibility}
-      onClick={copyValue}>
-      {showColorInfo && <FontAwesomeIcon icon={faCopy} className='copy-icon' />}
-      {showColorInfo && <p className='color-info'>{popupMsg}</p>}
+      onClick={copyValue}
+      aria-label='Copy color to clipboard'>
+      {showColorInfo && <FontAwesomeIcon className='copy-icon' icon={faCopy} data-testid='icon' />}
+      {showColorInfo && (
+        <p className='color-info' data-testid='msg'>
+          {popupMsg}
+        </p>
+      )}
     </TileWrapper>
   );
 };

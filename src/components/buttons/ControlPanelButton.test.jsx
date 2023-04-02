@@ -7,10 +7,9 @@ import PaletteContext from '../../store/palette-context';
 
 describe('ControlPanelButton', () => {
   const openProperModalMock = vi.fn();
-  const changeUpdateModeMock = vi.fn();
+  const setUpdateModeMock = vi.fn();
   const generateRandomHexColorsMock = vi.fn();
   const handleLibraryVisibilityMock = vi.fn();
-  vi.useFakeTimers();
 
   test('renders button with label and icon', () => {
     const labelMock = 'Save';
@@ -26,7 +25,7 @@ describe('ControlPanelButton', () => {
     const checkIfPaletteAlreadySavedMock = vi.fn();
     const contextMock = {
       checkIfPaletteAlreadySaved: checkIfPaletteAlreadySavedMock,
-      changeUpdateMode: changeUpdateModeMock,
+      setUpdateMode: setUpdateModeMock,
     };
 
     render(
@@ -39,7 +38,7 @@ describe('ControlPanelButton', () => {
     fireEvent.click(buttonElement);
     expect(checkIfPaletteAlreadySavedMock).toHaveBeenCalledTimes(1);
     expect(openProperModalMock).toHaveBeenCalledTimes(1);
-    expect(changeUpdateModeMock).toHaveBeenCalledTimes(1);
+    expect(setUpdateModeMock).toHaveBeenCalledTimes(1);
   });
 
   test('display alreadySavedMsg when palette is already saved', () => {
@@ -47,7 +46,7 @@ describe('ControlPanelButton', () => {
     const checkIfPaletteAlreadySavedMock = vi.fn().mockReturnValue(true);
     const contextMock = {
       checkIfPaletteAlreadySaved: checkIfPaletteAlreadySavedMock,
-      changeUpdateMode: changeUpdateModeMock,
+      setUpdateMode: setUpdateModeMock,
     };
 
     render(
@@ -67,7 +66,7 @@ describe('ControlPanelButton', () => {
     const checkIfPaletteAlreadySavedMock = vi.fn().mockReturnValue(false);
     const contextMock = {
       checkIfPaletteAlreadySaved: checkIfPaletteAlreadySavedMock,
-      changeUpdateMode: changeUpdateModeMock,
+      setUpdateMode: setUpdateModeMock,
     };
 
     render(
@@ -87,8 +86,9 @@ describe('ControlPanelButton', () => {
     const checkIfPaletteAlreadySavedMock = vi.fn().mockReturnValue(true);
     const contextMock = {
       checkIfPaletteAlreadySaved: checkIfPaletteAlreadySavedMock,
-      changeUpdateMode: changeUpdateModeMock,
+      setUpdateMode: setUpdateModeMock,
     };
+    vi.useFakeTimers();
 
     render(
       <PaletteContext.Provider value={contextMock}>

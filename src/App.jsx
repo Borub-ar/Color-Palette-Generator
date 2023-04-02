@@ -110,16 +110,13 @@ function App() {
     setShowLibrary(prevState => !prevState);
   };
 
-  const changeUpdateMode = state => {
-    setUpdateMode(state);
-  };
-
   const loadSavedPalette = id => {
     const paletteData = lodash.cloneDeep(savedColorPalettes.filter(el => el.id === id));
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteData[0].paletteName);
     setCurrentColors(lodash.cloneDeep(paletteData[0].colors));
     setShowLibrary(false);
+    setUpdateMode(false);
   };
 
   const markColorAsLocked = colorId => {
@@ -137,9 +134,9 @@ function App() {
     savedColorPalettes,
     handleLibraryVisibility,
     handleSingleColorChange,
+    setUpdateMode,
     updateMode,
     updatePalette,
-    changeUpdateMode,
     loadSavedPalette,
     markColorAsLocked,
   };
