@@ -94,7 +94,7 @@ function App() {
 
   const updatePalette = () => {
     setSavedColorPalettes(prevState => {
-      const updatedState = [...prevState];
+      const updatedState = lodash.cloneDeep(prevState);
       const paletteIndex = prevState.findIndex(el => el.id === currentPaletteId);
       updatedState[paletteIndex].colors = currentColors;
       return updatedState;
@@ -115,9 +115,8 @@ function App() {
     const paletteData = lodash.cloneDeep(savedColorPalettes.filter(el => el.id === id));
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteData[0].paletteName);
-    setCurrentColors(paletteData[0].colors);
+    setCurrentColors(lodash.cloneDeep(paletteData[0].colors));
     setShowLibrary(false);
-    setUpdateMode(false);
   };
 
   const providerValues = {
