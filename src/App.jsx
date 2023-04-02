@@ -6,7 +6,7 @@ import lodash from 'lodash';
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
 import ColorPalette from './components/ColorPalette/ColorsPalette';
-import ControlPanel from './components/controlPanel/ControlPanel';
+import ControlPanel from './components/ControlPanel/ControlPanel';
 import PalettesLibrary from './components/palettesLibrary/PalettesLibrary';
 
 const Wrapper = styled.main`

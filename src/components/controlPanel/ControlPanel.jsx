@@ -2,12 +2,12 @@ import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
-import ControlPanelButton from '../buttons/ControlPanelButton';
+import ControlPanelButton from '../Buttons/ControlPanelButton';
 import BarQuantityController from './BarQuantityController';
 import SaveModal from '../Modals/SaveModal';
 import UpdateModal from '../Modals/UpdateModal';
-import PaletteContext from '../../store/palette-context';
 import SuccessModal from '../Modals/SuccessModal';
+import PaletteContext from '../../store/palette-context';
 
 const PanelWrapper = styled.section`
   display: flex;
