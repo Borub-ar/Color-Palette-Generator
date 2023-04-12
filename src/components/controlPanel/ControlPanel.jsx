@@ -62,13 +62,15 @@ const MainPanel = () => {
   };
 
   return (
-    <PanelWrapper>
-      <BarQuantityController />
-      <div className='buttons-wrapper'>
-        <ControlPanelButton libraryMode label='Library' icon={faBook} />
-        <ControlPanelButton generateMode label='Generate' icon={faArrowRotateRight} />
-        <ControlPanelButton saveMode label='Save' openProperModal={openProperModal} icon={faFloppyDisk} />
-      </div>
+    <>
+      <PanelWrapper>
+        <BarQuantityController />
+        <div className='buttons-wrapper'>
+          <ControlPanelButton libraryMode label='Library' icon={faBook} />
+          <ControlPanelButton generateMode label='Generate' icon={faArrowRotateRight} />
+          <ControlPanelButton saveMode label='Save' openProperModal={openProperModal} icon={faFloppyDisk} />
+        </div>
+      </PanelWrapper>
 
       {showSaveModal && <SaveModal handleClose={closeSaveModal} />}
       {showUpdateModal && (
@@ -79,7 +81,7 @@ const MainPanel = () => {
         />
       )}
       {showSuccessModal && <SuccessModal label='Palette updated'></SuccessModal>}
-    </PanelWrapper>
+    </>
   );
 };
 

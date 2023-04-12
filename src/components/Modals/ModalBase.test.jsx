@@ -33,15 +33,15 @@ describe('ModalBase', () => {
     expect(handleCloseMock).toHaveBeenCalledTimes(1);
   });
 
-  test('renders with default width when temporaryMode is false', () => {
+  test('render modal with default width when temporaryMode is false', () => {
     render(<ModalBase />);
     const modalElement = screen.getByTestId('modal-overlay');
     expect(modalElement).toHaveStyle('width: clamp(300px, 50vw, 800px)');
   });
 
-  test('renders with 20vw width when temporaryMode is true', () => {
+  test('renders modal with 20vw width when temporaryMode is true', () => {
     render(<ModalBase temporaryMode />);
     const modalElement = screen.getByTestId('modal-overlay');
-    expect(modalElement).toHaveStyle('width: 20vw)');
+    expect(modalElement).toHaveStyle('width: 20vw');
   });
 });

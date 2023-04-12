@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import uuid4 from 'uuid4';
-import lodash from 'lodash';
+import { cloneDeep } from 'lodash';
 
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
@@ -65,7 +65,7 @@ function App() {
 
   const handleSingleColorChange = (colorId, newColor) => {
     setCurrentColors(prevState => {
-      const newState = lodash.cloneDeep(prevState);
+      const newState = cloneDeep(prevState);
       const colorIndex = newState.findIndex(color => color.id === colorId);
       newState[colorIndex].color = newColor;
       return newState;
@@ -80,8 +80,8 @@ function App() {
 
     const id = saveAsNew ? uuid4() : currentPaletteId;
     const colors = saveAsNew
-      ? lodash.cloneDeep(currentColors.map(color => ({ ...color, id: uuid4() })))
-      : lodash.cloneDeep(currentColors);
+      ? cloneDeep(currentColors.map(color => ({ ...color, id: uuid4() })))
+      : cloneDeep(currentColors);
 
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteName);
@@ -97,7 +97,7 @@ function App() {
 
   const updatePalette = () => {
     setSavedColorPalettes(prevState => {
-      const updatedState = lodash.cloneDeep(prevState);
+      const updatedState = cloneDeep(prevState);
       const paletteIndex = prevState.findIndex(el => el.id === currentPaletteId);
       updatedState[paletteIndex].colors = currentColors;
       return updatedState;
@@ -111,10 +111,10 @@ function App() {
   };
 
   const loadSavedPalette = id => {
-    const paletteData = lodash.cloneDeep(savedColorPalettes.filter(el => el.id === id));
+    const paletteData = cloneDeep(savedColorPalettes.filter(el => el.id === id));
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteData[0].paletteName);
-    setCurrentColors(lodash.cloneDeep(paletteData[0].colors));
+    setCurrentColors(cloneDeep(paletteData[0].colors));
     setShowLibrary(false);
     setUpdateMode(false);
   };
@@ -122,7 +122,7 @@ function App() {
   const updatePaletteName = newName => {
     setCurrentPaletteName(newName);
     setSavedColorPalettes(prevState => {
-      const newState = lodash.cloneDeep(prevState);
+      const newState = cloneDeep(prevState);
       const paletteToUpdateIndex = prevState.findIndex(palette => palette.id === currentPaletteId);
       newState[paletteToUpdateIndex].paletteName = newName;
       return newState;
