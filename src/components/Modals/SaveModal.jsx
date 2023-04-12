@@ -50,10 +50,11 @@ const SaveInputWrapper = styled.div`
 `;
 
 const SaveModal = props => {
-  const { updateMode, saveColorPalette } = useContext(PaletteContext);
   const [paletteName, setPaletteName] = useState('');
   const [showErrorMsg, setShowErrorMsg] = useState(false);
 
+  const { updateMode, saveColorPalette, updatePaletteName } = useContext(PaletteContext);
+  const { updateNameMode, handleClose } = props;
   const input = useRef();
 
   useEffect(() => {
@@ -71,14 +72,19 @@ const SaveModal = props => {
       return;
     }
 
+    if (updateNameMode) {
+      updatePaletteName(paletteName);
+    } else {
+      const saveAsNew = updateMode;
+      saveColorPalette(paletteName, saveAsNew);
+    }
+
     setShowErrorMsg(false);
-    const saveAsNew = updateMode;
-    saveColorPalette(paletteName, saveAsNew);
-    props.handleClose();
+    handleClose();
   };
 
   return (
-    <ModalBase handleClose={props.handleClose}>
+    <ModalBase handleClose={handleClose}>
       <SaveInputWrapper>
         <label htmlFor='name-input'>Choose palette name</label>
         <input type='text' id='name-input' autoComplete='off' ref={input} onBlur={savePaletteName} />

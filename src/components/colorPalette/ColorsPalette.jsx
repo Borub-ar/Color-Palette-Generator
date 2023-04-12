@@ -1,10 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 import PaletteContext from '../../store/palette-context';
 import SingleColorBar from './SingleColorBar';
+import SaveModal from '../Modals/SaveModal';
 
 const PaletteWrapper = styled.section`
   position: relative;
@@ -48,6 +49,7 @@ const PaletteWrapper = styled.section`
 `;
 
 const ColorsPalette = props => {
+  const [showUpdateNameModal, setShowUpdateNameModal] = useState(false);
   const { generateRandomHexColors, currentColors } = useContext(PaletteContext);
   const { paletteName } = props;
 
@@ -55,20 +57,28 @@ const ColorsPalette = props => {
     generateRandomHexColors(true);
   }, []);
 
+  const handleUpdateModalVisibility = () => {
+    setShowUpdateNameModal(prevState => !prevState);
+  };
+
   const colorBars = currentColors.map(hexColor => (
     <SingleColorBar key={hexColor.id} color={hexColor.color} colorId={hexColor.id} />
   ));
 
   return (
-    <PaletteWrapper>
-      <p data-testid='aaa' className={`palette-name ${paletteName && paletteName !== '' ? 'show' : ''}`}>
-        {paletteName}{' '}
-        <button className='edit-icon' aria-label='Change palette name'>
-          <FontAwesomeIcon icon={faPenToSquare} />
-        </button>
-      </p>
-      {colorBars}
-    </PaletteWrapper>
+    <>
+      <PaletteWrapper>
+        <p className={`palette-name ${paletteName && paletteName !== '' ? 'show' : ''}`}>
+          {paletteName}{' '}
+          <button className='edit-icon' aria-label='Change palette name' onClick={handleUpdateModalVisibility}>
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </button>
+        </p>
+        {colorBars}
+      </PaletteWrapper>
+
+      {showUpdateNameModal && <SaveModal updateNameMode handleClose={handleUpdateModalVisibility} />}
+    </>
   );
 };
 

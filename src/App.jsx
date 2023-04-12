@@ -119,9 +119,17 @@ function App() {
     setUpdateMode(false);
   };
 
-  const markColorAsLocked = colorId => {
-    // console.log('dsadas')
+  const updatePaletteName = newName => {
+    setCurrentPaletteName(newName);
+    setSavedColorPalettes(prevState => {
+      const newState = lodash.cloneDeep(prevState);
+      const paletteToUpdateIndex = prevState.findIndex(palette => palette.id === currentPaletteId);
+      newState[paletteToUpdateIndex].paletteName = newName;
+      return newState;
+    });
   };
+
+  const markColorAsLocked = colorId => {};
 
   const providerValues = {
     currentColors,
@@ -139,6 +147,7 @@ function App() {
     updatePalette,
     loadSavedPalette,
     markColorAsLocked,
+    updatePaletteName,
   };
 
   return (
