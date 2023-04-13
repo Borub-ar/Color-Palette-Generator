@@ -66,7 +66,7 @@ const SaveModal = props => {
     setPaletteName(name);
   };
 
-  const savePalette = () => {
+  const savePalette = event => {
     if (paletteName.length === 0) {
       setShowErrorMsg(true);
       return;

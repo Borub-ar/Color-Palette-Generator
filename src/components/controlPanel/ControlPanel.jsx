@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
 import ControlPanelButton from '../Buttons/ControlPanelButton';
-import BarQuantityController from './BarQuantityController';
+import BarsQuantityController from './BarsQuantityController';
 import SaveModal from '../Modals/SaveModal';
 import UpdateModal from '../Modals/UpdateModal';
 import SuccessModal from '../Modals/SuccessModal';
 import PaletteContext from '../../store/palette-context';
+import device from '../../breakpoints/breakpoints';
 
 const PanelWrapper = styled.section`
   display: flex;
@@ -16,7 +17,6 @@ const PanelWrapper = styled.section`
   gap: 20px;
   background-color: var(--main-background);
   padding: 2rem 7rem;
-  height: 25vh;
   width: 100%;
   max-width: 100rem;
   margin: 0 auto;
@@ -26,6 +26,10 @@ const PanelWrapper = styled.section`
     align-items: center;
     column-gap: 20vw;
     margin-top: 3rem;
+  }
+
+  @media (${device.laptop}) {
+    padding: 2rem 1rem;
   }
 `;
 
@@ -64,7 +68,7 @@ const MainPanel = () => {
   return (
     <>
       <PanelWrapper>
-        <BarQuantityController />
+        <BarsQuantityController />
         <div className='buttons-wrapper'>
           <ControlPanelButton libraryMode label='Library' icon={faBook} />
           <ControlPanelButton generateMode label='Generate' icon={faArrowRotateRight} />

@@ -129,7 +129,14 @@ function App() {
     });
   };
 
-  const markColorAsLocked = colorId => {};
+  const markColorAsLocked = colorId => {
+    setCurrentColors(prevState => {
+      const newState = cloneDeep(prevState);
+      const colorIndex = newState.findIndex(color => color.id === colorId);
+      newState[colorIndex].isLocked = !newState[colorIndex].isLocked;
+      return newState;
+    });
+  };
 
   const providerValues = {
     currentColors,

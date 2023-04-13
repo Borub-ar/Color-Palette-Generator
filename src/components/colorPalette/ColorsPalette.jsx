@@ -62,7 +62,7 @@ const ColorsPalette = props => {
   };
 
   const colorBars = currentColors.map(hexColor => (
-    <SingleColorBar key={hexColor.id} color={hexColor.color} colorId={hexColor.id} />
+    <SingleColorBar key={hexColor.id} initialColor={hexColor.color} colorId={hexColor.id} />
   ));
 
   return (

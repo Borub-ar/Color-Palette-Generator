@@ -12,6 +12,7 @@ const ModalOverlay = styled.div`
   background-color: #000000a2;
   animation-name: fade-in;
   animation-duration: 0.5s;
+  backdrop-filter: blur(4px);
 
   .information {
     text-align: center;

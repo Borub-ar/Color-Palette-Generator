@@ -7,6 +7,7 @@ import tinyColor from 'tinycolor2';
 import ColorPicker from './ColorPicker';
 import PaletteContext from '../../store/palette-context';
 import useDebounce from '../../hooks/useDebounce';
+import device from '../../breakpoints/breakpoints';
 
 const BarWrapper = styled.div`
   --colorMode: ${props => (props.darkMode ? '#fff' : '#202020')};
@@ -19,7 +20,7 @@ const BarWrapper = styled.div`
 
   p {
     color: var(--colorMode);
-    font-size: 1.7rem;
+    font-size: clamp(1rem, 2vw, 2rem);
     margin-bottom: 15rem;
   }
 
@@ -28,16 +29,19 @@ const BarWrapper = styled.div`
     color: var(--colorMode);
     border: none;
     margin-bottom: 3rem;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
     cursor: pointer;
   }
 `;
 
 const SingleColorBar = props => {
-  const [color, setColor] = useState(props.color);
+  const { colorId, initialColor } = props;
+
+  const [color, setColor] = useState(initialColor);
   const [colorChangeLocked, setColorChangeLocked] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [displayedColor, setDisplayedColor] = useState();
+  const [initial, setInitial] = useState(true);
 
   const { handleSingleColorChange, markColorAsLocked } = useContext(PaletteContext);
 
@@ -45,7 +49,7 @@ const SingleColorBar = props => {
 
   useEffect(() => {
     setDisplayedColor(debouncedColor);
-    handleSingleColorChange(props.colorId, debouncedColor);
+    handleSingleColorChange(colorId, debouncedColor);
     setDarkMode(tinyColor(color).isDark());
   }, [debouncedColor]);
 
@@ -54,7 +58,12 @@ const SingleColorBar = props => {
   }, []);
 
   useEffect(() => {
-    markColorAsLocked();
+    if (initial) {
+      setInitial(false);
+      return;
+    }
+
+    markColorAsLocked(colorId);
   }, [colorChangeLocked]);
 
   const handleColorChangeLock = () => {
