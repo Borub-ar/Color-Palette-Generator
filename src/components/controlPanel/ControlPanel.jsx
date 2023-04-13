@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
@@ -39,9 +39,12 @@ const MainPanel = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { updateMode } = useContext(PaletteContext);
 
-  const openProperModal = isAlreadySaved => {
-    updateMode && isAlreadySaved ? setShowUpdateModal(true) : setShowSaveModal(true);
-  };
+  const openProperModal = useCallback(
+    isAlreadySaved => {
+      updateMode && isAlreadySaved ? setShowUpdateModal(true) : setShowSaveModal(true);
+    },
+    [updateMode]
+  );
 
   const closeSaveModal = () => {
     setShowSaveModal(false);

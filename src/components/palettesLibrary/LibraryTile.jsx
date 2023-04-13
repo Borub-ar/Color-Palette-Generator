@@ -30,7 +30,7 @@ const moveLeftTile = keyframes`
 
 const Tile = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
   column-gap: 2rem;
   padding: 1rem;
@@ -51,7 +51,6 @@ const Tile = styled.div`
   .palette-colors {
     display: flex;
     align-items: center;
-    column-gap: 0.2rem;
   }
 
   .buttons-wrapper {
@@ -61,7 +60,7 @@ const Tile = styled.div`
     column-gap: 0.6rem;
   }
 
-  button {
+  .btn {
     height: 30px;
     padding: 0.4rem 1rem;
     border: none;
@@ -175,9 +174,9 @@ const LibraryTile = props => {
         <button
           ref={deleteButtonRef}
           onClick={startDeleteAnimations}
-          className='delete-button'
+          className='btn delete-button'
           aria-label='Delete palette'></button>
-        <button onClick={loadPalette} className='modify-button' aria-label='Modify palette'>
+        <button onClick={loadPalette} className='btn modify-button' aria-label='Modify palette'>
           <FontAwesomeIcon icon={faPaintBrush} />
         </button>
       </div>

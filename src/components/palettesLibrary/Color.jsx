@@ -10,7 +10,6 @@ const TileWrapper = styled.button`
   justify-content: center;
   flex: 1;
   height: 30px;
-  border-radius: 2px;
   border: none;
   background-color: ${props => props.color};
   cursor: pointer;
