@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import PaletteContext from '../../store/palette-context';
 import ModalBase from './ModalBase';
+import device from '../../breakpoints/breakpoints';
 
 const SaveInputWrapper = styled.div`
   display: flex;
@@ -46,6 +47,10 @@ const SaveInputWrapper = styled.div`
     color: #fff;
     border: none;
     border-radius: 4px;
+  }
+
+  @media ${device.tablet} {
+    justify-content: center;
   }
 `;
 

@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 import Color from './Color';
 import PaletteContext from '../../store/palette-context';
+import device from '../../breakpoints/breakpoints';
 
 const moveLeftButton = keyframes`
   0% {
@@ -68,11 +69,7 @@ const Tile = styled.div`
     cursor: pointer;
     color: #fff;
     transition: opacity 0.4s;
-  }
-
-  .delete-button,
-  .modify-button {
-    width: 3.5rem;
+    width: 3.3rem;
   }
 
   .delete-button {
@@ -117,6 +114,26 @@ const Tile = styled.div`
 
   .buttons-wrapper :is(.delete-button:hover, .modify-button:hover) {
     opacity: 0.8;
+    padding: 1rem 0.6rem;
+  }
+
+  @media ${device.laptop} {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 0.6rem;
+
+    .name {
+      text-align: center;
+    }
+
+    .buttons-wrapper {
+      justify-self: center;
+    }
+
+    .btn {
+      flex: 1;
+      width: 4rem;
+    }
   }
 `;
 

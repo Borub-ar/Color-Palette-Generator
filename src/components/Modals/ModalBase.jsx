@@ -54,12 +54,12 @@ const ModalOverlay = styled.div`
       top: 1rem;
       right: 1rem;
       font-size: 3rem;
-      color: #000;
+      color: var(--default-dark);
     }
 
     @media ${device.mobile} {
       .modal {
-        padding: 6em 1rem 2rem;
+        padding: 6em 0.5rem 2rem;
       }
     }
   }
