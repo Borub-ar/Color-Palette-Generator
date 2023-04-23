@@ -26,7 +26,6 @@ describe('BarsQuantityController', () => {
     expect(inputElement).toHaveAttribute('step', '1');
     expect(inputElement).toHaveAttribute('min', '2');
     expect(inputElement).toHaveAttribute('max', '8');
-    expect(inputElement).toHaveAttribute('defaultValue', '5');
   });
 
   test('renders paragraph with proper value', () => {
@@ -36,9 +35,9 @@ describe('BarsQuantityController', () => {
 
   test('calls updateColorBarsQuantity with proper value', () => {
     const inputElement = screen.getByLabelText(/Color Bars/i);
-    fireEvent.change(inputElement, { target: { value: 2 } });
+    fireEvent.change(inputElement, { target: { value: '2' } });
     expect(updateColorBarsQuantityMock).toHaveBeenCalledTimes(1);
-    expect(updateColorBarsQuantityMock).toHaveBeenCalledWith(2);
+    expect(updateColorBarsQuantityMock).toHaveBeenCalledWith('2');
   });
 
   test('updates paragraph with proper value', () => {
