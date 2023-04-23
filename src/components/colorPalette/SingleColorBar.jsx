@@ -38,7 +38,7 @@ const BarWrapper = styled.div`
 
     p {
       margin-bottom: 0;
-      margin-right: 5rem;
+      margin-right: 4rem;
     }
 
     button {
@@ -46,7 +46,7 @@ const BarWrapper = styled.div`
     }
 
     button + button {
-      margin-left: 3rem;
+      margin-left: 2rem;
     }
   }
 `;
