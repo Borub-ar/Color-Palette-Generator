@@ -4,9 +4,8 @@ import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-soli
 
 import ControlPanelButton from '../Buttons/ControlPanelButton';
 import BarsQuantityController from './BarsQuantityController';
-import SaveModal from '../Modals/SaveModal';
-import UpdateModal from '../Modals/UpdateModal';
-import SuccessModal from '../Modals/SuccessModal';
+import SaveModal from '../modals/SaveModal';
+import UpdateModal from '../modals/UpdateModal';
 import PaletteContext from '../../store/palette-context';
 import device from '../../breakpoints/breakpoints';
 
@@ -43,7 +42,6 @@ const PanelWrapper = styled.section`
 const MainPanel = () => {
   const [showSaveModal, setShowSaveModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { updateMode } = useContext(PaletteContext);
 
   const openProperModal = useCallback(
@@ -63,11 +61,6 @@ const MainPanel = () => {
 
   const handleSuccessModal = () => {
     setShowUpdateModal(false);
-    setShowSuccessModal(true);
-
-    setTimeout(() => {
-      setShowSuccessModal(false);
-    }, 1500);
   };
 
   const handleSaveAsNew = () => {
@@ -94,7 +87,6 @@ const MainPanel = () => {
           handleSaveAsNew={handleSaveAsNew}
         />
       )}
-      {showSuccessModal && <SuccessModal label='Palette updated'></SuccessModal>}
     </>
   );
 };
