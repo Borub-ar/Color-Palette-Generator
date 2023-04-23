@@ -67,7 +67,7 @@ describe('SaveModal', () => {
     fireEvent.blur(inputElement);
     const saveButtonElement = screen.getByLabelText(/Save palette/i);
     fireEvent.click(saveButtonElement);
-    expect(saveColorPaletteMock).toHaveBeenCalledWith(testPaletteName, updateModeMock);
     expect(handleCloseMock).toHaveBeenCalledTimes(1);
+    expect(saveColorPaletteMock).toHaveBeenCalledWith(testPaletteName, updateModeMock);
   });
 });

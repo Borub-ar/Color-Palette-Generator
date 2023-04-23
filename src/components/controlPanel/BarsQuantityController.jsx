@@ -29,7 +29,6 @@ const InputWrapper = styled.div`
 
   input {
     height: 21px;
-    -webkit-appearance: none;
     margin: 10px 0;
     width: clamp(15rem, 30vw, 40rem);
   }

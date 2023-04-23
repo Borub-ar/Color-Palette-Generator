@@ -52,7 +52,6 @@ describe('Color', () => {
     expect(messageElement).not.toBeInTheDocument();
   });
 
-
   // To Do: Czy wartośc została skopiowana do cliboardu?
   // Czy wyświetla sie popup color copied
   test('shows "Color copied!" popup after hover and click', () => {
