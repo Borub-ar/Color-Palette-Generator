@@ -6,6 +6,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import PaletteContext from '../../store/palette-context';
 import SingleColorBar from './SingleColorBar';
 import SaveModal from '../Modals/SaveModal';
+import device from '../../breakpoints/breakpoints';
 
 const PaletteWrapper = styled.section`
   position: relative;
@@ -45,6 +46,10 @@ const PaletteWrapper = styled.section`
     background-color: transparent;
     font-size: 1.4rem;
     cursor: pointer;
+  }
+
+  @media ${device.mobile} {
+    flex-direction: column;
   }
 `;
 

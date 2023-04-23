@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PaletteContext from '../../store/palette-context';
 import LibraryTile from './LibraryTile';
 import ModalBase from '../Modals/ModalBase';
+import device from '../../breakpoints/breakpoints';
 
 const LibraryList = styled.div`
   .list-wrapper {
@@ -35,6 +36,12 @@ const LibraryList = styled.div`
     font-weight: 700;
     font-size: 1.7rem;
     color: var(--default-dark);
+  }
+
+  @media ${device.tablet} {
+    .list-wrapper {
+      height: 100%;
+    }
   }
 `;
 

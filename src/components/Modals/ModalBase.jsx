@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import device from '../../breakpoints/breakpoints';
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -22,8 +23,6 @@ const ModalOverlay = styled.div`
 
   .modal {
     position: relative;
-    display: flex;
-    flex-direction: column;
     background-color: #fff;
     padding: 2rem 2rem;
     border-radius: 15px;
@@ -39,6 +38,30 @@ const ModalOverlay = styled.div`
     color: #fff;
     background-color: transparent;
     border: none;
+  }
+
+  @media ${device.tablet} {
+    .modal {
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 100vw;
+      height: 100vh;
+      padding: 6rem 2rem 2rem;
+      border-radius: 0;
+    }
+
+    .close-icon {
+      top: 1rem;
+      right: 1rem;
+      font-size: 3rem;
+      color: #000;
+    }
+
+    @media ${device.mobile} {
+      .modal {
+        padding: 6em 1rem 2rem;
+      }
+    }
   }
 `;
 

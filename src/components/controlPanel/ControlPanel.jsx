@@ -29,7 +29,14 @@ const PanelWrapper = styled.section`
   }
 
   @media (${device.laptop}) {
-    padding: 2rem 1rem;
+    padding: 1rem 0.5rem;
+    justify-content: space-between;
+    gap: 10px;
+
+    .buttons-wrapper {
+      margin-top: 0;
+      justify-content: space-between;
+    }
   }
 `;
 

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import PaletteContext from '../../store/palette-context';
+import device from '../../breakpoints/breakpoints';
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -47,6 +48,17 @@ const ButtonWrapper = styled.div`
     border-radius: 10px;
     animation-name: fade-in;
     animation-duration: 0.5s;
+  }
+
+  @media ${device.mobile} {
+    .action {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+
+    .label {
+      font-size: 1rem;
+    }
   }
 `;
 

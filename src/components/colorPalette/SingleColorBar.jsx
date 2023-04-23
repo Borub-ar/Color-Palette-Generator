@@ -32,6 +32,23 @@ const BarWrapper = styled.div`
     font-size: clamp(1.5rem, 2vw, 2.5rem);
     cursor: pointer;
   }
+
+  @media ${device.mobile} {
+    flex-direction: row;
+
+    p {
+      margin-bottom: 0;
+      margin-right: 5rem;
+    }
+
+    button {
+      margin-bottom: 0;
+    }
+
+    button + button {
+      margin-left: 3rem;
+    }
+  }
 `;
 
 const SingleColorBar = props => {

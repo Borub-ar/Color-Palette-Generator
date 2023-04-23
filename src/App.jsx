@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { useState } from 'react';
-import uuid4 from 'uuid4';
+import styled from 'styled-components';
 import { cloneDeep } from 'lodash';
+import uuid4 from 'uuid4';
 
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
