@@ -2,6 +2,11 @@ import { useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import PaletteContext from '../../store/palette-context';
+import device from '../../breakpoints/breakpoints';
+
+const MAX_BARS = 7;
+const MIN_BARS = 2;
+const STEP = 1;
 
 const InputWrapper = styled.div`
   display: flex;
@@ -106,6 +111,12 @@ const InputWrapper = styled.div`
   input:focus::-ms-fill-upper {
     background: #616161;
   }
+
+  @media ${device.mobile} {
+    p {
+      font-size: 1.2rem;
+    }
+  }
 `;
 
 const BarQuantityController = () => {
@@ -124,9 +135,9 @@ const BarQuantityController = () => {
       <input
         type='range'
         id='bar-quantity'
-        step='1'
-        min='2'
-        max='9'
+        step={STEP}
+        min={MIN_BARS}
+        max={MAX_BARS}
         defaultValue={barsQuantity}
         onChange={handleQuantityChange}
       />

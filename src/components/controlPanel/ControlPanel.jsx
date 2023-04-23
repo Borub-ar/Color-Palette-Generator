@@ -34,7 +34,7 @@ const PanelWrapper = styled.section`
     gap: 10px;
 
     .buttons-wrapper {
-      margin-top: 0;
+      margin-top: 1rem;
       justify-content: space-between;
     }
   }
