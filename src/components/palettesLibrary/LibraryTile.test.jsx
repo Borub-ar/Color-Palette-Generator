@@ -8,7 +8,12 @@ describe('LibraryTile', () => {
   const paletteDataMock = {
     paletteId: crypto.randomUUID(),
     paletteName: 'Test Name',
-    colors: ['#fff', '#fff', '#fff', '#fff'],
+    colors: [
+      { color: '#fff', id: crypto.randomUUID() },
+      { color: '#fff', id: crypto.randomUUID() },
+      { color: '#fff', id: crypto.randomUUID() },
+      { color: '#fff', id: crypto.randomUUID() },
+    ],
   };
 
   const deleteSavedPaletteMock = vi.fn();
@@ -26,10 +31,17 @@ describe('LibraryTile', () => {
     );
   });
 
-  test('renders action buttons', () => {
+  test('renders action buttons and palette', () => {
     const deleteButtonElement = screen.getByLabelText(/Delete palette/i);
     const modifyButtonElement = screen.getByLabelText(/Modify palette/i);
+    const nameParagraphElement = screen.getByText(paletteDataMock.paletteName);
     expect(deleteButtonElement).toBeInTheDocument();
     expect(modifyButtonElement).toBeInTheDocument();
+    expect(nameParagraphElement).toBeInTheDocument();
+  });
+
+  test('renders the correct amount of Color components', () => {
+    const colorsComponents = screen.getAllByTestId('color');
+    expect(colorsComponents).toHaveLength(paletteDataMock.colors.length);
   });
 });

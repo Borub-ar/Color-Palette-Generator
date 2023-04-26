@@ -184,7 +184,7 @@ const LibraryTile = props => {
 
       <div className='palette-colors'>
         {colors.map(color => (
-          <Color key={color.id} color={color.color} id={color.id} />
+          <Color data-testid='color' key={color.id} color={color.color} id={color.id} />
         ))}
       </div>
 
