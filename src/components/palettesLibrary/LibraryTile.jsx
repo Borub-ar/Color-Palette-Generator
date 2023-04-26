@@ -140,6 +140,7 @@ const Tile = styled.div`
 const LibraryTile = props => {
   const [buttonAnimation, setButtonAnimation] = useState(false);
   const [tileAnimation, setTileAnimation] = useState(false);
+
   const { deleteSavedPalette, loadSavedPalette } = useContext(PaletteContext);
 
   const deleteButtonRef = useRef();

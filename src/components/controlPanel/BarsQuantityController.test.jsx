@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, test, vi } from 'vitest';
 
-import BarQuantityController from './BarsQuantityController';
+import BarsQuantityController from './BarsQuantityController';
 import PaletteContext from '../../store/palette-context';
 
 describe('BarsQuantityController', () => {
@@ -14,7 +14,7 @@ describe('BarsQuantityController', () => {
   beforeEach(() => {
     render(
       <PaletteContext.Provider value={contextMock}>
-        <BarQuantityController />
+        <BarsQuantityController />
       </PaletteContext.Provider>
     );
   });

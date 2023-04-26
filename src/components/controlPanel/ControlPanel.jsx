@@ -4,7 +4,7 @@ import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-soli
 
 import ControlPanelButton from '../Buttons/ControlPanelButton';
 import BarsQuantityController from './BarsQuantityController';
-import SaveModal from '../modals/SaveModal';
+import SaveModal from '../Modals/SaveModal';
 import UpdateModal from '../modals/UpdateModal';
 import PaletteContext from '../../store/palette-context';
 import device from '../../breakpoints/breakpoints';
