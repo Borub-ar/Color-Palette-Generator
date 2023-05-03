@@ -2,10 +2,10 @@ import { useState, useContext, useCallback } from 'react';
 import styled from 'styled-components';
 import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
-import ControlPanelButton from '../Buttons/ControlPanelButton';
+import ControlPanelButton from '../buttons/ControlPanelButton';
 import BarsQuantityController from './BarsQuantityController';
 import SaveModal from '../Modals/SaveModal';
-import UpdateModal from '../modals/UpdateModal';
+import UpdateModal from '../Modals/UpdateModal';
 import PaletteContext from '../../store/palette-context';
 import device from '../../breakpoints/breakpoints';
 
