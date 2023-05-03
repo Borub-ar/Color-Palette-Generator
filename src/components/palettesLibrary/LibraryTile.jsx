@@ -114,7 +114,6 @@ const Tile = styled.div`
 
   .buttons-wrapper :is(.delete-button:hover, .modify-button:hover) {
     opacity: 0.8;
-    padding: 1rem 0.6rem;
   }
 
   @media ${device.laptop} {

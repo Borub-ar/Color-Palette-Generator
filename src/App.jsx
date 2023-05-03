@@ -8,6 +8,7 @@ import PaletteContext from './store/palette-context';
 import ColorPalette from './components/ColorPalette/ColorsPalette';
 import ControlPanel from './components/ControlPanel/ControlPanel';
 import PalettesLibrary from './components/palettesLibrary/PalettesLibrary';
+import useGenerateColor from './hooks/useGenerateColor';
 
 const Wrapper = styled.main`
   position: relative;
@@ -28,20 +29,32 @@ function App() {
   const [updateMode, setUpdateMode] = useState(false);
 
   const generateRandomHexColors = initialRender => {
-    const generatedColors = [];
-    for (let i = numberOfBars; i > 0; i--) {
-      let hex = '#';
-      let letters = '0123456789ABCDEF';
-      for (let i = 0; i < 6; i++) {
-        hex += letters[Math.floor(Math.random() * 16)];
-      }
-      const color = { color: hex, id: uuid4() };
-      if (initialRender) color.isLocked = false;
-      generatedColors.push(color);
+    const someColorsAreLocked = currentColors.some(color => color.isLocked);
+
+    if (someColorsAreLocked) {
+      setCurrentColors(prevState => {
+        const newState = cloneDeep(prevState).map(color => {
+          if (color.isLocked) return { id: uuid4(), color: color.color, isLocked: true };
+          if (!color.isLocked) return { id: uuid4(), color: useGenerateColor() };
+        });
+
+        return newState;
+      });
     }
+
+    if (!someColorsAreLocked) {
+      const generatedColors = [];
+      for (let i = numberOfBars; i > 0; i--) {
+        let hexColor = useGenerateColor();
+        const color = { color: hexColor, id: uuid4() };
+        if (initialRender) color.isLocked = false;
+        generatedColors.push(color);
+        setCurrentColors(generatedColors);
+      }
+    }
+
     generatePaletteId();
     setUpdateMode(false);
-    setCurrentColors(generatedColors);
     setCurrentPaletteName('');
   };
 

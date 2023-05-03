@@ -52,10 +52,10 @@ const BarWrapper = styled.div`
 `;
 
 const SingleColorBar = props => {
-  const { colorId, initialColor } = props;
+  const { colorData } = props;
 
-  const [color, setColor] = useState(initialColor);
-  const [colorChangeLocked, setColorChangeLocked] = useState(false);
+  const [color, setColor] = useState(colorData.color);
+  const [colorChangeLocked, setColorChangeLocked] = useState(colorData.isLocked);
   const [darkMode, setDarkMode] = useState(false);
   const [displayedColor, setDisplayedColor] = useState();
   const [initial, setInitial] = useState(true);
@@ -66,7 +66,7 @@ const SingleColorBar = props => {
 
   useEffect(() => {
     setDisplayedColor(debouncedColor);
-    handleSingleColorChange(colorId, debouncedColor);
+    handleSingleColorChange(colorData.id, debouncedColor);
     setDarkMode(tinyColor(color).isDark());
   }, [debouncedColor]);
 
@@ -80,7 +80,7 @@ const SingleColorBar = props => {
       return;
     }
 
-    markColorAsLocked(colorId);
+    markColorAsLocked(colorData.id);
   }, [colorChangeLocked]);
 
   const handleColorChangeLock = () => {

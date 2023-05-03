@@ -66,9 +66,7 @@ const ColorsPalette = props => {
     setShowUpdateNameModal(prevState => !prevState);
   };
 
-  const colorBars = currentColors.map(hexColor => (
-    <SingleColorBar key={hexColor.id} initialColor={hexColor.color} colorId={hexColor.id} />
-  ));
+  const colorBars = currentColors.map(color => <SingleColorBar key={color.id} colorData={color} />);
 
   return (
     <>
