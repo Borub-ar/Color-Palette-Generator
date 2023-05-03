@@ -5,8 +5,8 @@ import uuid4 from 'uuid4';
 
 import GlobalStyle from './GlobalStyle';
 import PaletteContext from './store/palette-context';
-import ColorPalette from './components/ColorPalette/ColorsPalette';
-import ControlPanel from './components/ControlPanel/ControlPanel';
+import ColorPalette from './components/colorPalette/ColorsPalette';
+import ControlPanel from './components/controlPanel/ControlPanel';
 import PalettesLibrary from './components/palettesLibrary/PalettesLibrary';
 import useGenerateColor from './hooks/useGenerateColor';
 

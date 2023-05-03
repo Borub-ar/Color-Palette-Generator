@@ -98,7 +98,7 @@ const SingleColorBar = props => {
     <BarWrapper color={displayedColor ? displayedColor : color} darkMode={darkMode}>
       <p>{displayedColor ? displayedColor : color}</p>
       <ColorPicker currentColor={color} handleColorChange={handleColorChange} />
-      <button aria-label='Lock current color' onClick={handleColorChangeLock}>
+      <button aria-label={`Lock current color (${color})`} onClick={handleColorChangeLock}>
         {lockIcon}
       </button>
     </BarWrapper>
