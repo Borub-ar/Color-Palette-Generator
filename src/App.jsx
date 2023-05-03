@@ -98,8 +98,8 @@ function App() {
 
     const id = saveAsNew ? uuid4() : currentPaletteId;
     const colors = saveAsNew
-      ? cloneDeep(currentColors.map(color => ({ ...color, id: uuid4() })))
-      : cloneDeep(currentColors);
+      ? cloneDeep(currentColors.map(color => ({ ...color, id: uuid4(), isLocked: false })))
+      : cloneDeep(currentColors.map(color => ({ ...color, isLocked: false })));
 
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteName);
