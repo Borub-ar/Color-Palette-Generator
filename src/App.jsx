@@ -65,6 +65,11 @@ function App() {
 
   const updateColorBarsQuantity = number => {
     setNumberOfBars(number);
+    resetColorLock();
+  };
+
+  const resetColorLock = () => {
+    setCurrentColors(prevState => prevState.map(color => ({ ...color, isLocked: false })));
   };
 
   const checkIfPaletteAlreadySaved = () => {
