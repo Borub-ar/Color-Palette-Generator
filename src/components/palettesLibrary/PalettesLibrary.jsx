@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import PaletteContext from '../../store/palette-context';
 import LibraryTile from './LibraryTile';
-import ModalBase from '../modals/ModalBase';
+import ModalBase from '../Modals/ModalBase';
 import device from '../../breakpoints/breakpoints';
 
 const LibraryList = styled.div`
