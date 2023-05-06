@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { cloneDeep } from 'lodash';
-import uuid4 from 'uuid4';
+import { useState } from "react";
+import styled from "styled-components";
+import { cloneDeep } from "lodash";
+import uuid4 from "uuid4";
 
-import GlobalStyle from './GlobalStyle';
-import PaletteContext from './store/palette-context';
-import ColorPalette from './components/colorPalette/ColorsPalette';
-import ControlPanel from './components/controlPanel/ControlPanel';
-import PalettesLibrary from './components/palettesLibrary/PalettesLibrary';
-import useGenerateColor from './hooks/useGenerateColor';
+import GlobalStyle from "./GlobalStyle";
+import PaletteContext from "./store/palette-context";
+import ColorPalette from "./components/colorPalette/ColorsPalette";
+import ControlPanel from "./components/controlPanel/ControlPanel";
+import PalettesLibrary from "./components/palettesLibrary/PalettesLibrary";
+import useGenerateColor from "./hooks/useGenerateColor";
 
 const Wrapper = styled.main`
   position: relative;
@@ -19,9 +19,9 @@ const Wrapper = styled.main`
 `;
 
 function App() {
-  const [currentPaletteId, setCurrentPaletteId] = useState('');
+  const [currentPaletteId, setCurrentPaletteId] = useState("");
   const [currentColors, setCurrentColors] = useState([]);
-  const [currentPaletteName, setCurrentPaletteName] = useState('');
+  const [currentPaletteName, setCurrentPaletteName] = useState("");
   const [savedColorPalettes, setSavedColorPalettes] = useState([]);
 
   const [numberOfBars, setNumberOfBars] = useState(5);
@@ -55,7 +55,7 @@ function App() {
 
     generatePaletteId();
     setUpdateMode(false);
-    setCurrentPaletteName('');
+    setCurrentPaletteName("");
   };
 
   const generatePaletteId = () => {
@@ -78,7 +78,7 @@ function App() {
 
   const deleteSavedPalette = id => {
     setSavedColorPalettes(prevState => prevState.filter(item => item.id !== id));
-    if (id === currentPaletteId) setCurrentPaletteName('');
+    if (id === currentPaletteId) setCurrentPaletteName("");
   };
 
   const handleSingleColorChange = (colorId, newColor) => {
@@ -101,16 +101,26 @@ function App() {
       ? cloneDeep(currentColors.map(color => ({ ...color, id: uuid4(), isLocked: false })))
       : cloneDeep(currentColors.map(color => ({ ...color, isLocked: false })));
 
+    const newColorsPalette = {
+      paletteName,
+      colors,
+      id,
+    };
+
+    addSavedPaletteToLocalStorage(newColorsPalette);
     setCurrentPaletteId(id);
     setCurrentPaletteName(paletteName);
-    setSavedColorPalettes(prevState => [
-      {
-        paletteName,
-        colors,
-        id,
-      },
-      ...prevState,
-    ]);
+    setSavedColorPalettes(prevState => [newColorsPalette, ...prevState]);
+  };
+
+  const addSavedPaletteToLocalStorage = ({ id, ...data }) => {
+    const palette = {
+      id,
+      colors: data.colors,
+      paletteName: data.paletteName,
+    };
+
+    localStorage.setItem(id, JSON.stringify(palette));
   };
 
   const updatePalette = () => {
