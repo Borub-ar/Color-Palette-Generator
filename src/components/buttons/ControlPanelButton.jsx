@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState, useContext } from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import PaletteContext from '../../store/palette-context';
-import device from '../../breakpoints/breakpoints';
+import PaletteContext from "../../store/palette-context";
+import device from "../../breakpoints/breakpoints";
 
 const ButtonWrapper = styled.div`
   position: relative;
@@ -50,7 +50,7 @@ const ButtonWrapper = styled.div`
     animation-duration: 0.5s;
   }
 
-  @media ${device.mobile} {
+  @media ${device.laptop} {
     .action {
       padding: 10px 20px;
       font-size: 1rem;
@@ -64,8 +64,13 @@ const ButtonWrapper = styled.div`
 
 const ControlPanelButton = props => {
   const [showAlreadySavedMsg, setShowAlreadySavedMsg] = useState();
-  const { setUpdateMode, updateMode, checkIfPaletteAlreadySaved, generateRandomHexColors, handleLibraryVisibility } =
-    useContext(PaletteContext);
+  const {
+    setUpdateMode,
+    updateMode,
+    checkIfPaletteAlreadySaved,
+    generateRandomHexColors,
+    handleLibraryVisibility,
+  } = useContext(PaletteContext);
 
   const handleClick = () => {
     if (props.saveMode) handleSave();
@@ -87,7 +92,9 @@ const ControlPanelButton = props => {
     }
   };
 
-  const alreadySavedMsg = props.saveMode && showAlreadySavedMsg && <p className='save-popup'>Palette already saved</p>;
+  const alreadySavedMsg = props.saveMode && showAlreadySavedMsg && (
+    <p className='save-popup'>Palette already saved</p>
+  );
 
   return (
     <ButtonWrapper>

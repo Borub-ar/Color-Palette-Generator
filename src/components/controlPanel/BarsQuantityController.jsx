@@ -1,8 +1,8 @@
-import { useState, useContext } from 'react';
-import styled from 'styled-components';
+import { useState, useContext } from "react";
+import styled from "styled-components";
 
-import PaletteContext from '../../store/palette-context';
-import device from '../../breakpoints/breakpoints';
+import PaletteContext from "../../store/palette-context";
+import device from "../../breakpoints/breakpoints";
 
 const MAX_BARS = 8;
 const MIN_BARS = 2;
@@ -112,7 +112,7 @@ const InputWrapper = styled.div`
     background: #616161;
   }
 
-  @media ${device.mobile} {
+  @media ${device.laptop} {
     p {
       font-size: 1.2rem;
     }

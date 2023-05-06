@@ -1,27 +1,28 @@
-import { useEffect, useState, useContext } from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLockOpen, faLock } from '@fortawesome/free-solid-svg-icons';
-import tinyColor from 'tinycolor2';
+import { useEffect, useState, useContext } from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLockOpen, faLock } from "@fortawesome/free-solid-svg-icons";
+import tinyColor from "tinycolor2";
 
-import ColorPicker from './ColorPicker';
-import PaletteContext from '../../store/palette-context';
-import useDebounce from '../../hooks/useDebounce';
-import device from '../../breakpoints/breakpoints';
+import ColorPicker from "./ColorPicker";
+import PaletteContext from "../../store/palette-context";
+import useDebounce from "../../hooks/useDebounce";
+import device from "../../breakpoints/breakpoints";
 
 const BarWrapper = styled.div`
-  --colorMode: ${props => (props.darkMode ? '#fff' : '#202020')};
+  --colorMode: ${props => (props.darkMode ? "#fff" : "#202020")};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: ${props => props.color};
   transition: opacity 0.2s;
+  padding-top: 2rem;
 
   p {
     color: var(--colorMode);
     font-size: clamp(1rem, 2vw, 2rem);
-    margin-bottom: 15rem;
+    margin-bottom: 5rem;
   }
 
   button {
@@ -92,7 +93,11 @@ const SingleColorBar = props => {
     setColor(newColor);
   };
 
-  const lockIcon = colorChangeLocked ? <FontAwesomeIcon icon={faLock} /> : <FontAwesomeIcon icon={faLockOpen} />;
+  const lockIcon = colorChangeLocked ? (
+    <FontAwesomeIcon icon={faLock} />
+  ) : (
+    <FontAwesomeIcon icon={faLockOpen} />
+  );
 
   return (
     <BarWrapper color={displayedColor ? displayedColor : color} darkMode={darkMode}>

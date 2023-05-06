@@ -1,13 +1,13 @@
-import { useState, useContext, useCallback } from 'react';
-import styled from 'styled-components';
-import { faBook, faArrowRotateRight, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { useState, useContext, useCallback } from "react";
+import styled from "styled-components";
+import { faBook, faArrowRotateRight, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
-import ControlPanelButton from '../buttons/ControlPanelButton';
-import BarsQuantityController from './BarsQuantityController';
-import SaveModal from '../Modals/SaveModal';
-import UpdateModal from '../Modals/UpdateModal';
-import PaletteContext from '../../store/palette-context';
-import device from '../../breakpoints/breakpoints';
+import ControlPanelButton from "../buttons/ControlPanelButton";
+import BarsQuantityController from "./BarsQuantityController";
+import SaveModal from "../Modals/SaveModal";
+import UpdateModal from "../Modals/UpdateModal";
+import PaletteContext from "../../store/palette-context";
+import device from "../../breakpoints/breakpoints";
 
 const PanelWrapper = styled.section`
   display: flex;
@@ -28,8 +28,8 @@ const PanelWrapper = styled.section`
   }
 
   @media (${device.laptop}) {
-    padding: 1rem 0.5rem;
     justify-content: space-between;
+    padding: 1rem 0.5rem;
     gap: 10px;
 
     .buttons-wrapper {
@@ -75,7 +75,12 @@ const MainPanel = () => {
         <div className='buttons-wrapper'>
           <ControlPanelButton libraryMode label='Library' icon={faBook} />
           <ControlPanelButton generateMode label='Generate' icon={faArrowRotateRight} />
-          <ControlPanelButton saveMode label='Save' openProperModal={openProperModal} icon={faFloppyDisk} />
+          <ControlPanelButton
+            saveMode
+            label='Save'
+            openProperModal={openProperModal}
+            icon={faFloppyDisk}
+          />
         </div>
       </PanelWrapper>
 
