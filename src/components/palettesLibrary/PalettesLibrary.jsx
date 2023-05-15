@@ -40,7 +40,13 @@ const LibraryList = styled.div`
 
   @media ${device.tablet} {
     .list-wrapper {
-      height: 100%;
+      height: 80dvh;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .list-wrapper::-webkit-scrollbar {
+      display: none;
     }
   }
 `;
