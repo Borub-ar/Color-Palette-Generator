@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { cloneDeep } from 'lodash';
 import uuid4 from 'uuid4';
@@ -27,6 +27,10 @@ function App() {
   const [numberOfBars, setNumberOfBars] = useState(5);
   const [showLibrary, setShowLibrary] = useState(false);
   const [updateMode, setUpdateMode] = useState(false);
+
+  useEffect(() => {
+    setSavedColorPalettes(JSON.parse(localStorage.getItem('palettes')).reverse());
+  }, []);
 
   const generateRandomHexColors = initialRender => {
     const someColorsAreLocked = currentColors.some(color => color.isLocked);
@@ -113,14 +117,14 @@ function App() {
     setSavedColorPalettes(prevState => [newColorsPalette, ...prevState]);
   };
 
-  const addSavedPaletteToLocalStorage = ({ id, ...data }) => {
-    const palette = {
-      id,
-      colors: data.colors,
-      paletteName: data.paletteName,
-    };
+  const addSavedPaletteToLocalStorage = palette => {
+    localStorage.getItem('palettes') === null && localStorage.setItem('palettes', JSON.stringify([palette]));
 
-    localStorage.setItem(id, JSON.stringify(palette));
+    if (localStorage.getItem('palettes') !== null) {
+      const palettes = JSON.parse(localStorage.getItem('palettes'));
+      const updatedPalettes = [...palettes, palette];
+      localStorage.setItem('palettes', JSON.stringify(updatedPalettes));
+    }
   };
 
   const updatePalette = () => {
