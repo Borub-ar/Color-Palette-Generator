@@ -24,6 +24,7 @@ const SaveInputWrapper = styled.div`
     padding: 0.7rem 0.5rem;
     font-size: 1.5rem;
     color: var(--default-dark);
+    width: 100%;
   }
 
   input[type='text']:focus-visible {
@@ -71,7 +72,7 @@ const SaveModal = props => {
     setPaletteName(name);
   };
 
-  const savePalette = event => {
+  const savePalette = () => {
     if (paletteName.length === 0) {
       setShowErrorMsg(true);
       return;

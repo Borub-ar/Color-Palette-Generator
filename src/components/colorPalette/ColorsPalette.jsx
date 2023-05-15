@@ -66,8 +66,6 @@ const ColorsPalette = props => {
     setShowUpdateNameModal(prevState => !prevState);
   };
 
-  const colorBars = currentColors.map(color => <SingleColorBar key={color.id} colorData={color} />);
-
   return (
     <>
       <PaletteWrapper>
@@ -77,7 +75,9 @@ const ColorsPalette = props => {
             <FontAwesomeIcon icon={faPenToSquare} />
           </button>
         </p>
-        {colorBars}
+        {currentColors.map(color => (
+          <SingleColorBar key={color.id} colorData={color} />
+        ))}
       </PaletteWrapper>
 
       {showUpdateNameModal && <SaveModal updateNameMode handleClose={handleUpdateModalVisibility} />}

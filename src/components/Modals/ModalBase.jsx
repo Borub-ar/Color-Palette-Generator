@@ -59,7 +59,7 @@ const ModalOverlay = styled.div`
 
     @media ${device.mobile} {
       .modal {
-        padding: 6em 0.5rem 2rem;
+        padding: 6em 1rem 2rem;
       }
     }
   }
